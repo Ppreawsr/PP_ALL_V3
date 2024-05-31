@@ -1,0 +1,6 @@
+../Core/Src/subroutine.c:35:9:updateLED	120	static
+../Core/Src/subroutine.c:108:9:retractX	16	static
+../Core/Src/subroutine.c:160:9:extendX	16	static
+../Core/Src/subroutine.c:210:9:HomeZ	24	static
+../Core/Src/subroutine.c:233:9:pickBox	16	static
+../Core/Src/subroutine.c:280:9:placeBox	16	static
