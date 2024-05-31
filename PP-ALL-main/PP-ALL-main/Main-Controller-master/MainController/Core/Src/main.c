@@ -101,11 +101,12 @@ uint16_t temPick; // temporary shelves order
 uint16_t temPlace;
 uint16_t pick[5]; // shelves order array
 uint16_t place[5];
-uint8_t rnd; // jog counter
+uint8_t rnd = 0; // jog counter
 uint8_t rnd2;
 uint8_t load;
 
 ///*Trajectory PART
+uint64_t x = 0;
 float time_op = 2;    // stop time in seconds
 float position_goal = 0.0;   // stop position in meters
 float position_now = 0;
@@ -259,11 +260,11 @@ int main(void)
   Modbus_init(&hmodbus, registerFrame);
   reed = 0;
 
-  shelfPos[0] = 1;
-  shelfPos[1] = 2;
-  shelfPos[2] = 3;
-  shelfPos[3] = 4;
-  shelfPos[4] = 5;
+  shelfPos[0] = 0;
+  shelfPos[1] = 1200;
+  shelfPos[2] = 3200;
+  shelfPos[3] = 4800;
+  shelfPos[4] = 5600;
 
   // @User: Setup Timer 1 for Motor drive
   HAL_TIM_Base_Start(&htim1);
@@ -297,7 +298,8 @@ int main(void)
 //  {
 //	  pos_err = position_goal;
 //  }
-
+  registerFrame[0x00].U16 = 22881;
+  Modbus_Protocal_Worker();
 
   buf[0] = 3;
   L_State = updateLED(buf,&htim3,TIM_CHANNEL_2);
@@ -339,7 +341,7 @@ int main(void)
 //		  _micros = 0;
 ////		  end = 0;
 //	  }
-	  if(fin == 1 && abs(((setPos/10.0) - qeifloat)) >= 0.1)
+	  if(fin == 1 && fabs(((setPos+16) - qeifloat/10)) >= 0.5)
 	  {
 		  generate_trapezoidal_velocity_profile(time_op,(setPos/10.0)+16.0);
 	  Mode = 1;
@@ -1150,7 +1152,9 @@ void generate_trapezoidal_velocity_profile(double t2, double x2) {
 
 void generate_Velocity()
 {
+//////acc//////////////
 
+////////////////////
 		t = (time_op) * i / num_points;
 		if (t < t_acc) {
 			velocity = (Peak * (t / t_acc));
@@ -1321,7 +1325,7 @@ void BaseAction(void){
 		  //deb++;
 	  }
 
-	  static uint16_t timestamp5 = 0;
+	  static uint16_t timestamp = 0;
 
 		/////Set shelves
 		  if(registerFrame[0x01].U16 == 1) // order mode 1 -> open setshelf
@@ -1331,10 +1335,8 @@ void BaseAction(void){
 
 //			  set_position_box();
 
-
-
 			  //delay 2000ms
-			 timestamp5 = HAL_GetTick()+2000;
+			 timestamp = HAL_GetTick()+2000;
 		  }
 		  if(registerFrame[0x10].U16 == 1 && flagShelf == 1)
 		  {
@@ -1347,14 +1349,14 @@ void BaseAction(void){
 			  flagShelf = 0;
 		  }
 
-		///////Home
+		///////1
 		  else if((registerFrame[0x01].U16 == 2)) //go to mode 2: Home
 		  	{
 		  		(registerFrame[0x01].U16) = 0; //reset status
 		  		(registerFrame[0x10].U16) = 2; //Z-home
 
 		  		//setPos = shelfPos[0]; // set goal to home
-		  		setPos = 160;
+		  		setPos = 0;
 //		  		  uint8_t result = HomeZ();
 //		  		  HAL_Delay(2000);
 //		  		  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
@@ -1397,11 +1399,12 @@ void BaseAction(void){
 				///////place down
 				if(mode == 6){
 					timestamp1 = HAL_GetTick() + 300; // delay before gripper move
+					// f
 					mode = 60;
 					}
 				if(reed != 2 && rnd> 0 && vacuum == 1 && gripper == 0 && HAL_GetTick() >= timestamp1){
 					registerFrame[0x03].U16 = 1; // gripper forward
-					timestamp2 = HAL_GetTick() + 100; //delay before release box
+					timestamp2 = HAL_GetTick() + 300; //delay before release box
 					mode = 61;
 					}
 				else if(reed == 2 && vacuum == 1 && HAL_GetTick() >= timestamp2)//reached reed vacuum not off
@@ -1475,6 +1478,7 @@ void BaseAction(void){
 			else if(registerFrame[0x10].U16 == 8 && rnd== 0)
 			{
 				(registerFrame[0x10].U16 = 0); // End Jogs
+				mode = 255;
 			}
 		/////End point & Home
 			else if(piingpong && (registerFrame[0x10].U16 == 2 || registerFrame[0x10].U16 == 16))
@@ -1491,7 +1495,7 @@ void BaseAction(void){
 					rnd2 = 0;
 				}
 			}
-		  if(registerFrame[0x10] == 0){
+		  if(registerFrame[0x10].U16 == 0){
 			  piingpong = 0;
 		  }
 	}
@@ -1499,13 +1503,13 @@ void BaseAction(void){
 
 void OrderSeparate(void)
 {
-	rnd = 0;
+	//rnd = 0;
 	////// Convert to string
-	for(uint16_t p = 10000;p>=1;p/=10)
+	for(uint16_t p = 10000;p>=1 && temPick != 0;p/=10)
 	{
 		if(temPick/p <= 0 || temPick/p > 5 || temPlace/p <= 0 || temPlace/p > 5) // check if 0 or > 5
 		{
-			rnd = 0;
+			//rnd = 0;
 			//mode = 0;
 			break;
 		}
@@ -1619,12 +1623,12 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim == &htim5)
 	{
-		registerFrame[0x00].U16 = 22881; //send "Ya"
+		//registerFrame[0x00].U16 = 22881; //send "Ya" // dont use interrupt cuz unstable
 	}
 	else if(htim == &htim4)
 	{
 		i+=1;
-		piingpong = 0;
+		//piingpong = 0;
 		fin = 0;
 		generate_Velocity();
 
@@ -1717,6 +1721,189 @@ void Error_Handler(void)
   {
   }
   /* USER CODE END Error_Handler_Debug */
+}
+void Error_Gain(void){
+	if(setPos == 100){
+		setPos = 100 - x;
+	}
+	else if(setPos == 200){
+		setPos = 200 - x;
+	}
+	else if(setPos == 300){
+		setPos = 300 - x;
+	}
+	else if(setPos == 400){
+		setPos = 400 - x;
+	}
+	else if(setPos == 500){
+		setPos = 500 - x;
+	}
+	else if(setPos == 600){
+		setPos = 600 - x;
+	}
+	else if(setPos == 700){
+		setPos = 700 - x;
+	}
+	else if(setPos == 800){
+		setPos = 800 - x;
+	}
+	else if(setPos == 900){
+		setPos = 900 - x;
+	}
+	else if(setPos == 1000){
+		setPos = 1000 - x;
+	}
+	else if(setPos == 1100){
+		setPos = 1100 - x;
+	}
+	else if(setPos == 1200){
+		setPos = 1200 - x;
+	}
+	else if(setPos == 1300){
+		setPos = 1300 - x;
+	}
+	else if(setPos == 1400){
+		setPos = 1400 - x;
+	}
+	else if(setPos == 1500){
+		setPos = 1500 - x;
+	}
+	else if(setPos == 1600){
+		setPos = 1600 - x;
+	}
+	else if(setPos == 1700){
+		setPos = 1700 - x;
+	}
+	else if(setPos == 1800){
+		setPos = 1800 - x;
+	}
+	else if(setPos == 1900){
+		setPos = 1900 - x;
+	}
+	else if(setPos == 2000){
+		setPos = 2000 - x;
+	}
+	else if(setPos == 2100){
+		setPos = 2100 - x;
+	}
+	else if(setPos == 2200){
+		setPos = 2200 - x;
+	}
+	else if(setPos == 2300){
+		setPos = 2300 - x;
+	}
+	else if(setPos == 2400){
+		setPos = 2400 - x;
+	}
+	else if(setPos == 2500){
+		setPos = 2500 - x;
+	}
+	else if(setPos == 2600){
+		setPos = 2600 - x;
+	}
+	else if(setPos == 2700){
+		setPos = 2700 - x;
+	}
+	else if(setPos == 2800){
+		setPos = 2800 - x;
+	}
+	else if(setPos == 2900){
+		setPos = 2900 - x;
+	}
+	else if(setPos == 3000){
+		setPos = 3000 - x;
+	}
+	else if(setPos == 3100){
+		setPos = 3100 - x;
+	}
+	else if(setPos == 3200){
+		setPos = 3200 - x;
+	}
+	else if(setPos == 3300){
+		setPos = 3300 - x;
+	}
+	else if(setPos == 3400){
+		setPos = 3400 - x;
+	}
+	else if(setPos == 3500){
+		setPos = 3500 - x;
+	}
+	else if(setPos == 3600){
+		setPos = 3600 - x;
+	}
+	else if(setPos == 3700){
+		setPos = 3700 - x;
+	}
+	else if(setPos == 3800){
+		setPos = 3800 - x;
+	}
+	else if(setPos == 3900){
+		setPos = 3900 - x;
+	}
+	else if(setPos == 4000){
+		setPos = 4000 - x;
+	}
+	else if(setPos == 4100){
+		setPos = 4100 - x;
+	}
+	else if(setPos == 4200){
+		setPos = 4200 - x;
+	}
+	else if(setPos == 4300){
+		setPos = 4300 - x;
+	}
+	else if(setPos == 4400){
+		setPos = 4400 - x;
+	}
+	else if(setPos == 4500){
+		setPos = 4500;
+	}
+	else if(setPos == 4600){
+		setPos = 4600 - x;
+	}
+	else if(setPos == 4700){
+		setPos = 4700 - x;
+	}
+	else if(setPos == 4800){
+		setPos = 4800 - x;
+	}
+	else if(setPos == 4900){
+		setPos = 4900 - x;
+	}
+	else if(setPos == 5000){
+		setPos = 5000 - x;
+	}
+	else if(setPos == 5100){
+		setPos = 5100 - x;
+	}
+	else if(setPos == 5200){
+		setPos = 5200 - x;
+	}
+	else if(setPos == 5300){
+		setPos = 5300 - x;
+	}
+	else if(setPos == 5400){
+		setPos = 5400 - x;
+	}
+	else if(setPos == 5500){
+		setPos = 5500 - x;
+	}
+	else if(setPos == 5600){
+		setPos = 5600 - x;
+	}
+	else if(setPos == 5700){
+		setPos = 5700 - x;
+	}
+	else if(setPos == 5800){
+		setPos = 5800 - x;
+	}
+	else if(setPos == 5900){
+		setPos = 5900 - x;
+	}
+	else if(setPos == 6000){
+		setPos = 6000 - x;
+	}
+
 }
 
 #ifdef  USE_FULL_ASSERT
