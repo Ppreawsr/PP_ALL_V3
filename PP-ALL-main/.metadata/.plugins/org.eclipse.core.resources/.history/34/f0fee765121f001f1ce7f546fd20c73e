@@ -232,93 +232,94 @@ uint8_t HomeZ(){
 
 uint8_t pickBox(){
 
-	//	const uint32_t TimeoutConst =000;
-	//
-	//	uint32_t Timeout = HAL_GetTick() + TimeoutConst;
-				// 10000 + x = x + 10000;
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);
+	const uint32_t TimeoutConst =10000;
+
+	uint32_t Timeout = HAL_GetTick() + TimeoutConst;
+
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
 
 
-		while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET){
+	while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET){
 
-	//		if (HAL_GetTick() < Timeout){
-	////			x + y
-	//			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//
-	//			return 1;
-	//		}
+		if (HAL_GetTick() < Timeout){
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+
+			return 1;
 		}
+	}
 
-		HAL_Delay(200);
+	//HAL_Delay(2000);
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
 
-		while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET){
+	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET){
 
-	//		if (HAL_GetTick() < Timeout){
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//
-	//			return 1;
-	//		}
+		if (HAL_GetTick() < Timeout){
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+
+			return 1;
 		}
+	}
 
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//	return 0;
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
+	return 0;
+
 
 }
 
 
 uint8_t placeBox(){
 
-	//	const uint32_t TimeoutConst = 5000;
-	//
-	//	uint32_t Timeout = HAL_GetTick() + TimeoutConst;
+	const uint32_t TimeoutConst = 10000;
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);
+	uint32_t Timeout = HAL_GetTick() + TimeoutConst;
+
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);	// Vacuum Pin จำเบอร์ไม่ได้
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
 
 
-		while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET){ // timeout
-	//
-	//		if (HAL_GetTick() > Timeout){
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//
-	//			return 1;
-	//		}
+	while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET){
+
+		if (HAL_GetTick() < Timeout){
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+
+			return 1;
 		}
+	}
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
 
-		HAL_Delay(200);
+	//HAL_Delay(2000);
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
 
-	//	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET){
-	//
-	//		if (HAL_GetTick() < Timeout){
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-	//			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//
-	//			return 1;
-	//		}
-	//	}
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
-	//	return 0;
+	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET){
+
+		if (HAL_GetTick() < Timeout){
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+
+			return 1;
+		}
+	}
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_SET);	// Vacuum Pin จำเบอร์ไม่ได้
+	return 0;
+
 
 }

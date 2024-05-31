@@ -1310,8 +1310,7 @@ void BaseAction(void){
 				(registerFrame[0x01].U16) = 0; //reset status
 				(registerFrame[0x10].U16) = 16; // Z-go point
 
-				setPos = ((registerFrame[0x30].U16)/10.0)+16.0; // goal = point 30->base system 4 point mode
-				generate_trapezoidal_velocity_profile(time_op,setPos);
+				setPos = (registerFrame[0x30].U16); // goal = point 30->base system 4 point mode
 			}
 		/////jog mode
 		  //read (convert to array)
