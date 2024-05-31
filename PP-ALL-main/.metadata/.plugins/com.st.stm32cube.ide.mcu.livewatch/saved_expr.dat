@@ -16,6 +16,11 @@ velocity
 Peak
 total_displacement
 qeifloat
-qeiRaw
 data
 pTxData
+registerFrame[0x10].U16
+TT
+joystickPayload
+testing
+rou
+shelfPos[place[3]]/10.0

@@ -259,7 +259,7 @@ int main(void)
   Modbus_init(&hmodbus, registerFrame);
   reed = 0;
 
-  shelfPos[0] = 16;
+  shelfPos[0] = 1;
   shelfPos[1] = 2;
   shelfPos[2] = 3;
   shelfPos[3] = 4;
@@ -324,31 +324,30 @@ int main(void)
 	  Modbus_Protocal_Worker();
 	  BaseAction();
 	  OrderSeparate();
-	  piingpong =1;
 
 //	  uint8_t result = HomeZ();
 
-	  static uint64_t timestamps =0;
-	  if (rou >= 2 && end == 0)
+//	  static uint64_t timestamps =0;
+//	  if (rou >= 2 && end == 0)
+//	  {
+//		  currentTime = micros();
+//	  }
+//	  else if (end == 1)
+//	  {
+//		  __HAL_TIM_SET_COUNTER(&htim7, 0);
+//		  currentTime = 0;
+//		  _micros = 0;
+////		  end = 0;
+//	  }
+	  if(fin == 1 && abs(((setPos/10.0) - qeifloat)) >= 0.1)
 	  {
-		  currentTime = micros();
-	  }
-	  else if (end == 1)
-	  {
-		  __HAL_TIM_SET_COUNTER(&htim7, 0);
-		  currentTime = 0;
-		  _micros = 0;
-//		  end = 0;
-	  }
-	  if(currentTime > timestamps && fin == 1)
-	  {
-	  timestamps =currentTime + 250000000;//us
+		  generate_trapezoidal_velocity_profile(time_op,(setPos/10.0)+16.0);
 	  Mode = 1;
 	  fin = 0;
 	  }
 //	  currentTime = __HAL_TIM_GET_COUNTER(&htim15);
 
-
+//	  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
 
 //	  if ( St == 1)
 //	  {
@@ -365,58 +364,58 @@ int main(void)
 //	  pos_err = (position_goal - err_g)+14;
 //
 //
-	  if (Mode == 1 && rou == 20)
-	 	  {
-	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[0]]/10.0);
-
-	 	  }
-
-	  else if (Mode == 1 && rou == 21)
-	  	 	  {
-	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[0]]/10.0);
-
-	  	 	  }
-	  else if (Mode == 1 && rou == 22)
-	  	  	 	  {
-	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[1]]/10.0);
-
-	  	  	 	  }
-	  else if (Mode == 1 && rou == 23)
-	  	  	  	 	  {
-	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[1]]/10.0);
-
-	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 24)
-	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[2]]/10.0);
-
-	  	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 25)
-	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[2]]/10.0);
-
-	  	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 26)
-	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[3]]/10.0);
-
-	  	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 27)
-	  	  	  	  	  	 	  {
-	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[3]]/10.0);
-
-	  	  	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 28)
-	  	  	  	  	  	 	  {
-	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[4]]/10.0);
-
-	  	  	  	  	  	 	  }
-	  else if (Mode == 1 && rou == 29)
-	  	  	  	  	  	  	 	  {
-	  	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op,shelfPos[place[4]]/10.0);
-	  	  	  	  	  	  	 		  end = 1;
-
-	  	  	  	  	  	  	 	  }
+//	  if (Mode == 1 && rou == 20)
+//	 	  {
+//	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[0]]/10.0);
+//
+//	 	  }
+//
+//	  else if (Mode == 1 && rou == 21)
+//	  	 	  {
+//	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[0]]/10.0);
+//
+//	  	 	  }
+//	  else if (Mode == 1 && rou == 22)
+//	  	  	 	  {
+//	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[1]]/10.0);
+//
+//	  	  	 	  }
+//	  else if (Mode == 1 && rou == 23)
+//	  	  	  	 	  {
+//	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[1]]/10.0);
+//
+//	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 24)
+//	  	  	  	  	 	  {
+//	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[2]]/10.0);
+//
+//	  	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 25)
+//	  	  	  	  	 	  {
+//	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[2]]/10.0);
+//
+//	  	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 26)
+//	  	  	  	  	 	  {
+//	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[3]]/10.0);
+//
+//	  	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 27)
+//	  	  	  	  	  	 	  {
+//	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[3]]/10.0);
+//
+//	  	  	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 28)
+//	  	  	  	  	  	 	  {
+//	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[4]]/10.0);
+//
+//	  	  	  	  	  	 	  }
+//	  else if (Mode == 1 && rou == 29)
+//	  	  	  	  	  	  	 	  {
+//	  	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op,shelfPos[place[4]]/10.0);
+//	  	  	  	  	  	  	 		  end = 1;
+//
+//	  	  	  	  	  	  	 	  }
 
 	  if ( joystickPayload[0] == 0x80 && registerFrame[0x10].U16 == 0x0)
 	  {
@@ -466,22 +465,23 @@ int main(void)
 
 	  else if ( joystickPayload[0] == 0x40)
 		{
-		  generate_trapezoidal_velocity_profile(time_op, (position + 0.1));
+//		  //generate_trapezoidal_velocity_profile(time_op, ((setPos/10.0) + 0.1));
+		  setPos += 1;
 		  joystickPayload[0] = 0 ;
 		}
 	  else if ( joystickPayload[0] == 0x41)
 	  		{
-		  generate_trapezoidal_velocity_profile(time_op, (position + 1.0));
+		  setPos += 10;
 		  joystickPayload[0] = 0 ;
 	  		}
 	  else if ( joystickPayload[0] == 0x42)
 	  		{
-		  generate_trapezoidal_velocity_profile(time_op, (position + 10.0));
+		  setPos += 100;
 		  joystickPayload[0] = 0 ;
 	  		}
 	  else if ( joystickPayload[0] == 0x43)
 	  		{
-		  generate_trapezoidal_velocity_profile(time_op, (position + 100.0));
+		  setPos += 1000;
 		  joystickPayload[0] = 0 ;
 	  		}
 //	  else if ( joystickPayload[0] == 0x00)
@@ -489,19 +489,19 @@ int main(void)
 //		  generate_trapezoidal_velocity_profile(time_op, (position - 0.1));
 //		  joystickPayload[0] = 0 ;
 //	  		}
-	  	  else if ( joystickPayload[0] == 0x01)
+	  	  else if ( joystickPayload[0] == 0x01 && (setPos-10) >= 0)
 	  	  		{
-	  		generate_trapezoidal_velocity_profile(time_op, (position - 1.0));
+	  		setPos -= 10;
 	  		joystickPayload[0] = 0 ;
 	  	  		}
-	  	  else if ( joystickPayload[0] == 0x02)
+	  	  else if ( joystickPayload[0] == 0x02 && (setPos-100) >= 0)
 	  	  		{
-	  		generate_trapezoidal_velocity_profile(time_op, (position - 10.0));
+	  		setPos -= 100;
 	  		joystickPayload[0] = 0 ;
 	  	  		}
-	  	  else if ( joystickPayload[0] == 0x03)
+	  	  else if ( joystickPayload[0] == 0x03 && (setPos-1000) >= 0)
 	  	  		{
-	  		generate_trapezoidal_velocity_profile(time_op, (position - 100.0));
+	  		setPos -= 1000;
 	  		joystickPayload[0] = 0 ;
 	  	  		}
 
@@ -1142,7 +1142,8 @@ void generate_trapezoidal_velocity_profile(double t2, double x2) {
 	Peak = total_displacement / (t_acc + t_const);
 
 	HAL_TIM_Base_Start_IT(&htim4);
-
+	piingpong = 0;
+	fin = 0;
 	Mode = 0;
 
   }
@@ -1151,24 +1152,24 @@ void generate_Velocity()
 {
 
 		t = (time_op) * i / num_points;
-				        if (t < t_acc) {
-				          velocity = (Peak * (t / t_acc));
-				        } else if (t >= t_acc && t <+ t_acc + t_const) {
-				          velocity = Peak;
-				        } else {
-				          velocity = (Peak * ((time_op - t) / t_acc));
-				        }
-				        position += velocity/1000.0;
+		if (t < t_acc) {
+			velocity = (Peak * (t / t_acc));
+		} else if (t >= t_acc && t <+ t_acc + t_const) {
+			velocity = Peak;
+		} else {
+			velocity = (Peak * ((time_op - t) / t_acc));
+		}
+		position += velocity/1000.0;
 
-				        position_now = position;
+		position_now = position;
 
-				        Vfeedback = arm_pid_f32(&PID, position_now - qeifloat);
+		Vfeedback = arm_pid_f32(&PID, position_now - qeifloat);
 
 
 
-				        BTempV = Vfeedback;
+		BTempV = Vfeedback;
 
-				        VInM = Vfeedback * (24.0/65535.0);
+		VInM = Vfeedback * (24.0/65535.0);
 
 		//		        pwmM = Vfeedback * (65535.0/24.0);
 
@@ -1178,40 +1179,46 @@ void generate_Velocity()
 		//		        	Vfeedback = 9830;
 		//		        }
 
-				        zStop = 0;
-				        pwmM = Vfeedback * (65535.0/24.0);
+		zStop = 0;
+		pwmM = Vfeedback * (65535.0/24.0);
 
-				        if(Vfeedback >= 0)
-				        {
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pwmM);
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+		if(Vfeedback >= 0)
+		{
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pwmM);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
 
-				        }
 
-				        else if (Vfeedback < 0)
-				        {
+		}
 
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pwmM*-1);
-				        }
+		else if (Vfeedback < 0)
+		{
+
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pwmM*-1);
+		}
 
 
 
 		//		        qei = PlantSimulation(Vfeeback);
 
-				        if ( i >= time_op*1000)
-				        {
-				        	__HAL_TIM_SET_COUNTER(&htim4, 0);
-				        	HAL_TIM_Base_Stop_IT(&htim4);
-				        	rou += 1;
-				        	i = 0;
-				        	buf[0] = 2;
-				        	L_State = updateLED(buf,&htim3,TIM_CHANNEL_2);
-				        	fin = 1;
-//				        	Vfeedback = 0;
+		if ( i >= time_op*1000)
+		{
+			__HAL_TIM_SET_COUNTER(&htim4, 0);
+			HAL_TIM_Base_Stop_IT(&htim4);
+			rou += 1;
+			i = 0;
+			buf[0] = 2;
+			L_State = updateLED(buf,&htim3,TIM_CHANNEL_2);
+			if ( registerFrame[0x10].U16 != 0)
+			{
+				piingpong  = 1;
+
+			}
+			fin = 1;
+//					        	Vfeedback = 0;
 //
-//				        	total_displacement = 0;
-//				        	t_acc = 0;
+//					        	total_displacement = 0;
+//					        	t_acc = 0;
 //				        	t_const = 0;
 //				        	Peak = 0;
 //				        	t = 0;
@@ -1220,8 +1227,8 @@ void generate_Velocity()
 //
 //				        	pwmM = 0;
 
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 3000);
-				        	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 3000);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
 
 				        }
 
@@ -1229,14 +1236,14 @@ void generate_Velocity()
 
 float PlantSimulation(float VIn) // run with fix frequency
 {
-static float speed =0;
-static float qei =0;
-float current= VIn - speed * 0.0123;
-float torque = current * 0.456;
-float acc = torque * 0.789;
-speed += acc;
-qei += speed;
-return qei;
+	static float speed =0;
+	static float qei =0;
+	float current= VIn - speed * 0.0123;
+	float torque = current * 0.456;
+	float acc = torque * 0.789;
+	speed += acc;
+	qei += speed;
+	return qei;
 }
 
 //uint64_t micros()
@@ -1262,12 +1269,7 @@ void BaseAction(void){
 
 	  rState1=  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6);
 	  rState2=  HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
-	  if (gripper ==1){
-		  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 1 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7) == 0;
-	  }
-	  else if (gripper = 0){
-		  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0 && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7) == 1;
-	  }
+
 	static uint16_t timestamp1 = 0;
 	static uint16_t timestamp2 = 0;
 	static uint16_t timestamp3 = 0;
@@ -1284,6 +1286,24 @@ void BaseAction(void){
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
 	  }
 	  gripper = registerFrame[0x03].U16;	  //1 forward 0 backward
+	  if (gripper ==1){
+	  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 0);
+	  		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+	  		  if ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET )
+	  		  {
+	  			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+	  			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+	  		  }
+	  	  }
+	  	  else if (gripper == 0){
+	  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+	  		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 0 );
+	  		if ( HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET )
+	  			  		  {
+	  			  			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+	  			  			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+	  			  		  }
+	  	  }
 
 	  reed = rState1 + (2 * rState2); //for 2 back 1
 	  registerFrame[0x04].U16 = (reed*2%3);
@@ -1301,7 +1321,7 @@ void BaseAction(void){
 		  //deb++;
 	  }
 
-	  static uint16_t timestamp = 0;
+	  static uint16_t timestamp5 = 0;
 
 		/////Set shelves
 		  if(registerFrame[0x01].U16 == 1) // order mode 1 -> open setshelf
@@ -1314,7 +1334,7 @@ void BaseAction(void){
 
 
 			  //delay 2000ms
-			 timestamp = HAL_GetTick()+2000;
+			 timestamp5 = HAL_GetTick()+2000;
 		  }
 		  if(registerFrame[0x10].U16 == 1 && flagShelf == 1)
 		  {
@@ -1335,10 +1355,9 @@ void BaseAction(void){
 
 		  		//setPos = shelfPos[0]; // set goal to home
 		  		setPos = 160;
-		  		piingpong = 0;
 //		  		  uint8_t result = HomeZ();
 //		  		  HAL_Delay(2000);
-		  		  generate_trapezoidal_velocity_profile(time_op,16.0);
+//		  		  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
 		  		  Home = 0;
 		  		  rou = 0;
 		  	}
@@ -1348,8 +1367,8 @@ void BaseAction(void){
 				(registerFrame[0x01].U16) = 0; //reset status
 				(registerFrame[0x10].U16) = 16; // Z-go point
 
-				setPos = ((registerFrame[0x30].U16)/10.0)+16.0; // goal = point 30->base system 4 point mode
-				generate_trapezoidal_velocity_profile(time_op,setPos);
+				setPos = ((registerFrame[0x30].U16)); // goal = point 30->base system 4 point mode
+				//generate_trapezoidal_velocity_profile(time_op,setPos);
 			}
 		/////jog mode
 		  //read (convert to array)
@@ -1360,6 +1379,8 @@ void BaseAction(void){
 				temPlace = (registerFrame[0x22].U16);
 
 				OrderSeparate();
+
+
 			}
 			//run
 			else if(rnd > 0)
@@ -1375,25 +1396,25 @@ void BaseAction(void){
 				{
 				///////place down
 				if(mode == 6){
-					timestamp1 = HAL_GetTick() + 300; // 0.5 sec delay
+					timestamp1 = HAL_GetTick() + 300; // delay before gripper move
 					mode = 60;
 					}
 				if(reed != 2 && rnd> 0 && vacuum == 1 && gripper == 0 && HAL_GetTick() >= timestamp1){
 					registerFrame[0x03].U16 = 1; // gripper forward
-					timestamp2 = HAL_GetTick() + 100;
+					timestamp2 = HAL_GetTick() + 100; //delay before release box
 					mode = 61;
 					}
 				else if(reed == 2 && vacuum == 1 && HAL_GetTick() >= timestamp2)//reached reed vacuum not off
 					{
 					registerFrame[0x02].U16 = 0; //vacuum off
-					timestamp3 = HAL_GetTick() + 100; // 0.5 sec delay
+					timestamp3 = HAL_GetTick() + 100; // delay before retract gripper
 					mode = 62;
 					}
 				else if(vacuum == 0 && gripper == 1 && HAL_GetTick() >= timestamp3)
 					{
 					registerFrame[0x03].U16 = 0; //gripper backward
 					load = 0;
-					timestamp4 = HAL_GetTick() + 100;
+					timestamp4 = HAL_GetTick() + 100; // delay before moving to pick
 					mode = 63;
 					}
 				///////finish place -> move on
@@ -1412,20 +1433,19 @@ void BaseAction(void){
 				{
 				//////pick up
 				if(mode == 9){
-					timestamp1 = HAL_GetTick() + 50; // 0.05 sec delay
+					timestamp1 = HAL_GetTick() + 50; // delay before gripper go pick
 					//mode = 90;
 					}
 				if(reed == 1 && gripper == 0 && vacuum == 0 && HAL_GetTick() >= timestamp1)
 					{
-					//registerFrame[0x02].U16 = 1; //vacuum on
-					timestamp2 = HAL_GetTick() + 100;
+					timestamp2 = HAL_GetTick() + 100; // delay before picking box
 					registerFrame[0x03].U16 = 1; //gripper forward
 					//mode = 91;
 					}
 				else if(gripper == 1 && vacuum == 0 && HAL_GetTick() >= timestamp2) //if vacuum off
 					{
 					registerFrame[0x02].U16 = 1; //vacuum on
-					timestamp3 = HAL_GetTick() + 400;
+					timestamp3 = HAL_GetTick() + 400; // delay before pulling box back
 					//mode = 92;
 
 					}
@@ -1433,7 +1453,7 @@ void BaseAction(void){
 					{
 					registerFrame[0x03].U16 = 0; //gripper backward
 					load = 1;
-					timestamp4 = HAL_GetTick() + 200;
+					timestamp4 = HAL_GetTick() + 200; // delay before moving again
 					//mode = 93;
 					}
 				///////finish pick -> move on
@@ -1441,10 +1461,10 @@ void BaseAction(void){
 					{
 					(registerFrame[0x10].U16) = 8; // Z-go place
 					if(place[5-rnd] == 5){
-						setPos = shelfPos[place[5-rnd]-1] + 50; // goal + 5mm
+						setPos = shelfPos[place[5-rnd]-1] + 100; // goal + 5mm
 					}
 					else{
-						setPos = shelfPos[place[5-rnd]-1] + 100; // goal + 5mm
+						setPos = shelfPos[place[5-rnd]-1] + 50; // goal + 5mm
 					}
 					//mode = 6;
 					}
@@ -1471,6 +1491,9 @@ void BaseAction(void){
 					rnd2 = 0;
 				}
 			}
+		  if(registerFrame[0x10] == 0){
+			  piingpong = 0;
+		  }
 	}
 
 
@@ -1491,6 +1514,7 @@ void OrderSeparate(void)
 		temPick = temPick%p;
 		temPlace = temPlace%p;
 		rnd++;
+		rou = 20;
 	}
 }
 
@@ -1600,6 +1624,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	else if(htim == &htim4)
 	{
 		i+=1;
+		piingpong = 0;
+		fin = 0;
 		generate_Velocity();
 
 	}
