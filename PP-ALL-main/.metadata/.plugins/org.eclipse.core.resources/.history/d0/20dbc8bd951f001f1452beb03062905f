@@ -107,7 +107,7 @@ uint8_t load;
 
 ///*Trajectory PART
 uint64_t x = 0;
-uint8_t xx;
+float xx;
 float time_op = 2;    // stop time in seconds
 float position_goal = 0.0;   // stop position in meters
 float position_now = 0;
@@ -348,7 +348,7 @@ int main(void)
 	  Mode = 1;
 	  fin = 0;
 	  }
-	  xx = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6);
+	  HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) = xx;
 //	  currentTime = __HAL_TIM_GET_COUNTER(&htim15);
 
 //	  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
