@@ -66,8 +66,7 @@ uint8_t joystickPayload[1] = {0};
 // @User: Encoder's raw angle from QEI
 uint32_t qeiRaw = 0;
 float qeifloat = 0.0;
-float TT;
-uint16_t testing = 0;
+
 // @User: Base system receiving buffer
 
 
@@ -367,102 +366,77 @@ int main(void)
 //
 	  if (Mode == 1 && rou == 20)
 	 	  {
-	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[0]]/10.0);
+	 		  generate_trapezoidal_velocity_profile(time_op, pick[0]+16.0);
 
 	 	  }
 
 	  else if (Mode == 1 && rou == 21)
 	  	 	  {
-	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[0]]/10.0);
+	  	 		  generate_trapezoidal_velocity_profile(time_op, place[0]+16.0);
 
 	  	 	  }
 	  else if (Mode == 1 && rou == 22)
 	  	  	 	  {
-	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[1]]/10.0);
+	  	  	 		  generate_trapezoidal_velocity_profile(time_op, pick[1]+16.0);
 
 	  	  	 	  }
 	  else if (Mode == 1 && rou == 23)
 	  	  	  	 	  {
-	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[1]]/10.0);
+	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, place[1]+16.0);
 
 	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 24)
 	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[2]]/10.0);
+	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, pick[2]+16.0);
 
 	  	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 25)
 	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[2]]/10.0);
+	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, place[2]+16.0);
 
 	  	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 26)
 	  	  	  	  	 	  {
-	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[3]]/10.0);
+	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, pick[3]+16.0);
 
 	  	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 27)
 	  	  	  	  	  	 	  {
-	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[place[3]]/10.0);
+	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, place[3]+16.0);
 
 	  	  	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 28)
 	  	  	  	  	  	 	  {
-	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, shelfPos[pick[4]]/10.0);
+	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, pick[4]+16.0);
 
 	  	  	  	  	  	 	  }
 	  else if (Mode == 1 && rou == 29)
 	  	  	  	  	  	  	 	  {
-	  	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op,shelfPos[place[4]]/10.0);
+	  	  	  	  	  	  	 		  generate_trapezoidal_velocity_profile(time_op, place[4]+16.0);
 	  	  	  	  	  	  	 		  end = 1;
 
 	  	  	  	  	  	  	 	  }
 
-	  if ( joystickPayload[0] == 0x80 && registerFrame[0x10].U16 == 0x0)
+	  if ( joystickPayload[0] == 0x80 )
 	  {
-		  generate_trapezoidal_velocity_profile(time_op,16.0);
-		  joystickPayload[0] = 0;
-
+		  NVIC_SystemReset();
+//		  Vfeedback = 0;
+//		  //
+//
+//		  				        	velocity = 0;
+//		  				        	position = 0;
+//		  //
+//		  				        	pwmM = 0;
+//		  	  	  	  joystickPayload[0] = 0;
+//		  	  	  	  buf[0] = 3;
+//		    		  L_State = updateLED(buf,&htim3,TIM_CHANNEL_2);
+//		    		  uint8_t result = HomeZ();
+//		    		  HAL_Delay(2000);
+//		    		  __HAL_TIM_SET_COUNTER(&htim2, 0);
+//		    		  generate_trapezoidal_velocity_profile(time_op,16.0);
+//		    		  Home = 0;
+//		    		  rou = 0;
 	  }
-
-	  if ( joystickPayload[0] == 0x80 && registerFrame[0x10].U16 == 0x1)
-	  				{
-	  					if (TT == 0)
-	  					{
-	  						shelfPos[0] = qeifloat*10.0;
-
-	  					}
-
-	  					else if (TT == 1)
-	  							{
-	  						shelfPos[1] = qeifloat*10.0;
-
-	  							}
-
-	  					else if (TT == 2)
-	  							{
-	  						shelfPos[2] = qeifloat*10.0;
-
-	  							}
-
-	  					else if (TT == 3)
-	  							{
-	  						shelfPos[3] = qeifloat*10.0;
-
-	  							}
-
-	  					else if (TT == 4)
-	  							{
-	  						shelfPos[4] = qeifloat*10.0;
-
-	  							}
-	  					else if ( TT >=  5)
-	  					{
-	  						flagShelf = 1;
-	  					}
-	  					TT += 1;
-	  					joystickPayload[0] = 0;
-	  				}
 
 	  else if ( joystickPayload[0] == 0x40)
 		{
@@ -1309,10 +1283,6 @@ void BaseAction(void){
 			  registerFrame[0x01].U16 = 0; //change to idle mode
 			  registerFrame[0x10].U16 = 1; //current state set shelf mode
 
-//			  set_position_box();
-
-
-
 			  //delay 2000ms
 			 timestamp = HAL_GetTick()+2000;
 		  }
@@ -1358,7 +1328,6 @@ void BaseAction(void){
 
 				temPick = (registerFrame[0x21].U16);
 				temPlace = (registerFrame[0x22].U16);
-
 				OrderSeparate();
 			}
 			//run
@@ -1637,43 +1606,6 @@ QEIdata.QEIAngularVelocity = (diffPosition / diffTime)*(59.19/8192)*100.0;
 //store value for next loop
 QEIdata.Positions[OLD] = QEIdata.Positions[NEW];
 QEIdata.TimeStamps[OLD]=QEIdata.TimeStamps[NEW];
-}
-
-
-void set_position_box()
-{
-	if ( joystickPayload[0] == 0x80 )
-	{
-		if (TT == 0)
-		{
-			shelfPos[0] = qeifloat;
-		}
-
-		else if (TT == 1)
-				{
-			shelfPos[1] = qeifloat;
-				}
-
-		else if (TT == 2)
-				{
-			shelfPos[2] = qeifloat;
-				}
-
-		else if (TT == 3)
-				{
-			shelfPos[3] = qeifloat;
-				}
-
-		else if (TT == 4)
-				{
-			shelfPos[4] = qeifloat;
-				}
-		else if ( TT >=  5)
-		{
-			flagShelf = 1;
-		}
-		TT += 1;
-	}
 }
 
 /* USER CODE END 4 */
