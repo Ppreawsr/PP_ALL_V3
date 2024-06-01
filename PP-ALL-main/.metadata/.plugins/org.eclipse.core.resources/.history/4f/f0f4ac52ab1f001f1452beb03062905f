@@ -1326,18 +1326,6 @@ void BaseAction(void){
 	  {
 		  linear_velocity = QEIdata.QEIAngularVelocity[NEW];
 	  }
-
-	  if (QEIdata.QEILinearAcc < 0)
-	  	  {
-		  linear_accel = QEIdata.QEILinearAcc * -1;
-	  	  }
-
-	  	  else if (QEIdata.QEILinearAcc >= 0)
-	  	  {
-	  		linear_accel = QEIdata.QEILinearAcc;
-	  	  }
-
-
 	  //linear_accel = accerelometer;
 	  linear_position = qeifloat-16.0 ;
 

@@ -163,8 +163,7 @@ typedef struct
 uint64_t Positions[2];
 uint64_t TimeStamps[2];
 float QEIPostion_1turn;
-float QEIAngularVelocity[2];
-float QEILinearAcc;
+float QEIAngularVelocity;
 }QEI_StructureTypeDef;
 QEI_StructureTypeDef QEIdata = {0};
 uint64_t _micros = 0;
@@ -176,8 +175,6 @@ NEW,OLD
 
 int64_t diffPosition;
 float diffTime;
-float diffVelocity;
-float diffVelocitys;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -199,7 +196,7 @@ void OrderSeparate(void);
 void generate_trapezoidal_velocity_profile(double t2, double x2);
 float PlantSimulation(float VIn) ;
 uint64_t micros();
-float QEIEncoderPosVel_Update();
+void QEIEncoderPosVel_Update();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -346,15 +343,6 @@ int main(void)
 //		  currentTime = 0;
 //		  _micros = 0;
 ////		  end = 0;
-
-	  static uint64_t timestampqei =0;
-	  int64_t currentTimeqei = micros();
-	  if(currentTimeqei > timestampqei)
-	  {
-	  timestampqei =currentTimeqei + 100000;//us
-	  ACC_Update();
-	  }
-
 //	  }
 	  if(fin == 1 && fabs(((setPos+16) - qeifloat/10)) >= 0.5)
 	  {
@@ -1319,25 +1307,13 @@ void BaseAction(void){
 	  position_goal = setPos/10.0;
 	  if (velocity < 0)
 	  {
-		  linear_velocity = QEIdata.QEIAngularVelocity[NEW] * -1;
+		  linear_velocity = velocity * -1;
 	  }
 
 	  else if (velocity >= 0)
 	  {
-		  linear_velocity = QEIdata.QEIAngularVelocity[NEW];
+		  linear_velocity = velocity;
 	  }
-
-	  if (QEIdata.QEILinearAcc < 0)
-	  	  {
-		  linear_accel = QEIdata.QEILinearAcc * -1;
-	  	  }
-
-	  	  else if (QEIdata.QEILinearAcc >= 0)
-	  	  {
-	  		linear_accel = QEIdata.QEILinearAcc;
-	  	  }
-
-
 	  //linear_accel = accerelometer;
 	  linear_position = qeifloat-16.0 ;
 
@@ -1718,18 +1694,15 @@ uint64_t micros()
 return __HAL_TIM_GET_COUNTER(&htim7)+_micros;
 }
 
-float QEIEncoderPosVel_Update()
+void QEIEncoderPosVel_Update()
 {
 //collect data
 QEIdata.TimeStamps[NEW] = micros();
 QEIdata.Positions[NEW] = __HAL_TIM_GET_COUNTER(&htim2);
-//QEIdata.QEIAngularVelocity[NEW]=QEIdata.QEIAngularVelocity[OLD];
-
 //Postion 1 turn calculation
-//QEIdata.QEIPostion_1turn = QEIdata.Positions[NEW] % 3072;
+QEIdata.QEIPostion_1turn = QEIdata.Positions[NEW] % 3072;
 //calculate dx
 diffPosition = QEIdata.Positions[NEW] - QEIdata.Positions[OLD];
-//diffVelocity = QEIdata.QEIAngularVelocity[NEW] - QEIdata.QEIAngularVelocity[OLD];
 //Handle Warp around
 //if(diffPosition > 2147483647)
 //diffPosition -=4294967295 ;
@@ -1738,44 +1711,10 @@ diffPosition = QEIdata.Positions[NEW] - QEIdata.Positions[OLD];
 //calculate dt
 diffTime = (QEIdata.TimeStamps[NEW]-QEIdata.TimeStamps[OLD]) * 0.000001;
 //calculate anglar velocity
-diffVelocity = (diffPosition / diffTime)*(60.0/8192)*100.0;
-//QEIdata.QEILinearAcc = (diffVelocity / diffTime)*(60.0/8192)*100.0;
-
+QEIdata.QEIAngularVelocity = (diffPosition / diffTime)*(59.19/8192)*100.0;
 //store value for next loop
 QEIdata.Positions[OLD] = QEIdata.Positions[NEW];
 QEIdata.TimeStamps[OLD]=QEIdata.TimeStamps[NEW];
-
-return diffVelocity;
-//QEIdata.QEIAngularVelocity[OLD]=QEIdata.QEIAngularVelocity[NEW];
-}
-
-void ACC_Update()
-{
-//collect data
-QEIdata.TimeStamps[NEW] = micros();
-QEIdata.QEIAngularVelocity[NEW] =  QEIEncoderPosVel_Update();
-//QEIdata.QEIAngularVelocity[NEW]=QEIdata.QEIAngularVelocity[OLD];
-
-//Postion 1 turn calculation
-//QEIdata.QEIPostion_1turn = QEIdata.Positions[NEW] % 3072;
-//calculate dx
-//diffPosition = QEIdata.Positions[NEW] - QEIdata.Positions[OLD];
-diffVelocitys = QEIdata.QEIAngularVelocity[NEW] - QEIdata.QEIAngularVelocity[OLD];
-//Handle Warp around
-//if(diffPosition > 2147483647)
-//diffPosition -=4294967295 ;
-//if(diffPosition < 2147483647)
-//diffPosition +=4294967295;
-//calculate dt
-//calculate anglar velocity
-QEIdata.QEILinearAcc = (diffVelocitys / diffTime);
-//QEIdata.QEILinearAcc = (diffVelocity / diffTime)*(60.0/8192)*100.0;
-
-//store value for next loop
-QEIdata.QEIAngularVelocity[OLD] = QEIdata.QEIAngularVelocity[NEW];
-QEIdata.TimeStamps[OLD]=QEIdata.TimeStamps[NEW];
-
-//QEIdata.QEIAngularVelocity[OLD]=QEIdata.QEIAngularVelocity[NEW];
 }
 
 

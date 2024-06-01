@@ -4919,3 +4919,608 @@ arm-none-eabi-size  MainController.elf
   42252	    544	   5936	  48732	   be5c	MainController.elf
 Finished building: default.size.stdout
  
+05:48:14 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:310:11: warning: unused variable 'result' [-Wunused-variable]
+  310 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1376:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1376 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  42564	    544	   5936	  49044	   bf94	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+05:54:38 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:310:11: warning: unused variable 'result' [-Wunused-variable]
+  310 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1385:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1385 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  42988	    544	   6000	  49532	   c17c	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+05:54:58 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42988	    544	   6000	  49532	   c17c	MainController.elf
+Finished building: default.size.stdout
+ 
+06:02:49 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: In function 'Acc_Update':
+../Core/Src/main.c:1739:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ 1739 | {
+      | ^
+../Core/Src/main.c:1781:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ 1781 | {
+      | ^
+../Core/Src/main.c:1790:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+ 1790 | void Error_Gain(void){
+      |                      ^
+../Core/Src/main.c:1991: error: expected '{' at end of input
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:03:12 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43052	    544	   6008	  49604	   c1c4	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:06:23 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43052	    544	   6008	  49604	   c1c4	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:16:38 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1737:6: error: redefinition of 'QEIEncoderPosVel_Update'
+ 1737 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1708:6: note: previous definition of 'QEIEncoderPosVel_Update' with type 'void()'
+ 1708 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:17:04 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1737:6: error: redefinition of 'QEIEncoderPosVel_Update'
+ 1737 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1708:6: note: previous definition of 'QEIEncoderPosVel_Update' with type 'void()'
+ 1708 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:17:25 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1737:6: error: redefinition of 'QEIEncoderPosVel_Update'
+ 1737 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1708:6: note: previous definition of 'QEIEncoderPosVel_Update' with type 'void()'
+ 1708 | void QEIEncoderPosVel_Update()
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:18:04 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43060	    544	   6008	  49612	   c1cc	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:20:03 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43060	    544	   6008	  49612	   c1cc	MainController.elf
+Finished building: default.size.stdout
+ 
+06:22:18 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  42972	    544	   6008	  49524	   c174	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:27:21 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:354:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1708:7: error: conflicting types for 'QEIEncoderPosVel_Update'; have 'float()'
+ 1708 | float QEIEncoderPosVel_Update()
+      |       ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:201:6: note: previous declaration of 'QEIEncoderPosVel_Update' with type 'void()'
+  201 | void QEIEncoderPosVel_Update();
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1739:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:354:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c: In function 'ACC_Update':
+../Core/Src/main.c:1743:28: error: assignment to expression with array type
+ 1743 | QEIdata.QEIAngularVelocity =  QEIEncoderPosVel_Update();
+      |                            ^
+../Core/Src/main.c:1766:8: warning: 'return' with a value, in function returning void [-Wreturn-type]
+ 1766 | return diffVelocity;
+      |        ^~~~~~~~~~~~
+../Core/Src/main.c:1739:6: note: declared here
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:27:56 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:354:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1708:7: error: conflicting types for 'QEIEncoderPosVel_Update'; have 'float()'
+ 1708 | float QEIEncoderPosVel_Update()
+      |       ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:201:6: note: previous declaration of 'QEIEncoderPosVel_Update' with type 'void()'
+  201 | void QEIEncoderPosVel_Update();
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:1739:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:354:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c: In function 'ACC_Update':
+../Core/Src/main.c:1766:8: warning: 'return' with a value, in function returning void [-Wreturn-type]
+ 1766 | return diffVelocity;
+      |        ^~~~~~~~~~~~
+../Core/Src/main.c:1739:6: note: declared here
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+06:28:27 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:354:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1739:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:354:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c: In function 'ACC_Update':
+../Core/Src/main.c:1766:8: warning: 'return' with a value, in function returning void [-Wreturn-type]
+ 1766 | return diffVelocity;
+      |        ^~~~~~~~~~~~
+../Core/Src/main.c:1739:6: note: declared here
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43204	    544	   6008	  49756	   c25c	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:34:42 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:354:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:312:11: warning: unused variable 'result' [-Wunused-variable]
+  312 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1387:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1387 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1739:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:354:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  354 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c: In function 'ACC_Update':
+../Core/Src/main.c:1765:8: warning: 'return' with a value, in function returning void [-Wreturn-type]
+ 1765 | return diffVelocity;
+      |        ^~~~~~~~~~~~
+../Core/Src/main.c:1739:6: note: declared here
+ 1739 | void ACC_Update()
+      |      ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43132	    544	   6008	  49684	   c214	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:38:02 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43132	    544	   6008	  49684	   c214	MainController.elf
+Finished building: default.size.stdout
+ 
+06:41:20 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43132	    544	   6008	  49684	   c214	MainController.elf
+Finished building: default.size.stdout
+ 
+06:45:44 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:355:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:313:11: warning: unused variable 'result' [-Wunused-variable]
+  313 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1388:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1388 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1740:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1740 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:355:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43132	    544	   6016	  49692	   c21c	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:48:52 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:355:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:313:11: warning: unused variable 'result' [-Wunused-variable]
+  313 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1388:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1388 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1740:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1740 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:355:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43076	    544	   6016	  49636	   c1e4	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:56:39 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:355:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:313:11: warning: unused variable 'result' [-Wunused-variable]
+  313 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1388:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1388 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1740:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1740 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:355:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+06:57:44 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+06:57:51 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+06:58:12 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+07:10:16 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:355:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:313:11: warning: unused variable 'result' [-Wunused-variable]
+  313 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1400:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1400 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1752:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1752 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:355:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+07:11:48 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43084	    544	   6016	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+07:13:12 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/ARM_CMSIS/CMSIS/Core/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/PrivateInclude/ -I../Middlewares/Third_Party/ARM_CMSIS/Include/ -I../Middlewares/Third_Party/ARM_CMSIS/Include -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BasicMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/BayesFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/CommonTables" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ComplexMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/ControllerFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/DistanceFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FastMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/FilteringFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/InterpolationFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/MatrixFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/QuaternionMathFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/StatisticsFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SupportFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/SVMFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/TransformFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source/WindowFunctions" -I"C:/Users/ppreawsr/OneDrive/Documents/GitHub/PP_ALL_V3/PP-ALL-main/PP-ALL-main/Main-Controller-master/MainController/Source" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:355:11: warning: implicit declaration of function 'ACC_Update' [-Wimplicit-function-declaration]
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+../Core/Src/main.c:313:11: warning: unused variable 'result' [-Wunused-variable]
+  313 |   uint8_t result = HomeZ();
+      |           ^~~~~~
+../Core/Src/main.c: In function 'BaseAction':
+../Core/Src/main.c:1400:27: warning: variable 'timestamp' set but not used [-Wunused-but-set-variable]
+ 1400 |           static uint16_t timestamp = 0;
+      |                           ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:1752:6: warning: conflicting types for 'ACC_Update'; have 'void()'
+ 1752 | void ACC_Update()
+      |      ^~~~~~~~~~
+../Core/Src/main.c:355:11: note: previous implicit declaration of 'ACC_Update' with type 'void()'
+  355 |           ACC_Update();
+      |           ^~~~~~~~~~
+arm-none-eabi-gcc -o "MainController.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ppreawsr\OneDrive\Documents\GitHub\PP_ALL_V3\PP-ALL-main\PP-ALL-main\Main-Controller-master\MainController\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MainController.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: MainController.elf has a LOAD segment with RWX permissions
+Finished building target: MainController.elf
+ 
+arm-none-eabi-size  MainController.elf 
+arm-none-eabi-objdump -h -S MainController.elf  > "MainController.list"
+   text	   data	    bss	    dec	    hex	filename
+  43172	    544	   6016	  49732	   c244	MainController.elf
+Finished building: default.size.stdout
+ 
+Finished building: MainController.list
+ 
+07:16:41 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43172	    544	   6016	  49732	   c244	MainController.elf
+Finished building: default.size.stdout
+ 

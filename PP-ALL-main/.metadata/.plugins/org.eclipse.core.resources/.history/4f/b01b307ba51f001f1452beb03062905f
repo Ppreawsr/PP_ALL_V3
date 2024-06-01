@@ -177,7 +177,6 @@ NEW,OLD
 int64_t diffPosition;
 float diffTime;
 float diffVelocity;
-float diffVelocitys;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -199,7 +198,7 @@ void OrderSeparate(void);
 void generate_trapezoidal_velocity_profile(double t2, double x2);
 float PlantSimulation(float VIn) ;
 uint64_t micros();
-float QEIEncoderPosVel_Update();
+void QEIEncoderPosVel_Update();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -1319,25 +1318,13 @@ void BaseAction(void){
 	  position_goal = setPos/10.0;
 	  if (velocity < 0)
 	  {
-		  linear_velocity = QEIdata.QEIAngularVelocity[NEW] * -1;
+		  linear_velocity = velocity * -1;
 	  }
 
 	  else if (velocity >= 0)
 	  {
-		  linear_velocity = QEIdata.QEIAngularVelocity[NEW];
+		  linear_velocity = velocity;
 	  }
-
-	  if (QEIdata.QEILinearAcc < 0)
-	  	  {
-		  linear_accel = QEIdata.QEILinearAcc * -1;
-	  	  }
-
-	  	  else if (QEIdata.QEILinearAcc >= 0)
-	  	  {
-	  		linear_accel = QEIdata.QEILinearAcc;
-	  	  }
-
-
 	  //linear_accel = accerelometer;
 	  linear_position = qeifloat-16.0 ;
 
@@ -1760,21 +1747,23 @@ QEIdata.QEIAngularVelocity[NEW] =  QEIEncoderPosVel_Update();
 //QEIdata.QEIPostion_1turn = QEIdata.Positions[NEW] % 3072;
 //calculate dx
 //diffPosition = QEIdata.Positions[NEW] - QEIdata.Positions[OLD];
-diffVelocitys = QEIdata.QEIAngularVelocity[NEW] - QEIdata.QEIAngularVelocity[OLD];
+diffVelocity = QEIdata.QEIAngularVelocity[NEW] - QEIdata.QEIAngularVelocity[OLD];
 //Handle Warp around
 //if(diffPosition > 2147483647)
 //diffPosition -=4294967295 ;
 //if(diffPosition < 2147483647)
 //diffPosition +=4294967295;
 //calculate dt
+diffTime = (QEIdata.TimeStamps[NEW]-QEIdata.TimeStamps[OLD]) * 0.000001;
 //calculate anglar velocity
-QEIdata.QEILinearAcc = (diffVelocitys / diffTime);
+QEIdata.QEILinearAcc = (diffVelocity / diffTime)*(60.0/8192)*100.0;
 //QEIdata.QEILinearAcc = (diffVelocity / diffTime)*(60.0/8192)*100.0;
 
 //store value for next loop
 QEIdata.QEIAngularVelocity[OLD] = QEIdata.QEIAngularVelocity[NEW];
 QEIdata.TimeStamps[OLD]=QEIdata.TimeStamps[NEW];
 
+return diffVelocity;
 //QEIdata.QEIAngularVelocity[OLD]=QEIdata.QEIAngularVelocity[NEW];
 }
 
