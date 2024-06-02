@@ -1,0 +1,10 @@
+22:58:34 **** Incremental Build of configuration Debug for project MainController ****
+make -j8 all 
+arm-none-eabi-size  MainController.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43092	    544	   6008	  49644	   c1ec	MainController.elf
+Finished building: default.size.stdout
+ 
+
+22:58:34 Build Finished. 0 errors, 0 warnings. (took 620ms)
+

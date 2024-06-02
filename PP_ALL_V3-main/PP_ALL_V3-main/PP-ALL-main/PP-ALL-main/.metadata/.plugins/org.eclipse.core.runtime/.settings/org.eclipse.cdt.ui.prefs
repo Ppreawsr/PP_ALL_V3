@@ -1,0 +1,10 @@
+c_comment_task_tag=192,192,192
+c_multi_line_comment=192,192,192
+c_multi_line_comment_italic=true
+c_single_line_comment=192,192,192
+c_single_line_comment_italic=true
+eclipse.preferences.version=1
+org.eclipse.cdt.ui.text.templates.custom=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

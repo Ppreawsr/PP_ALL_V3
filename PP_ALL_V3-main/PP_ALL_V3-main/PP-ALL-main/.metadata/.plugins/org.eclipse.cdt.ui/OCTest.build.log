@@ -1,0 +1,203 @@
+09:26:26 **** Incremental Build of configuration Debug for project OCTest ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:48:1: error: unknown type name 'FDCAN_RxHeaderTypeDef'; did you mean 'FDCAN_GlobalTypeDef'?
+   48 | FDCAN_RxHeaderTypeDef pRxHeader;
+      | ^~~~~~~~~~~~~~~~~~~~~
+      | FDCAN_GlobalTypeDef
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:3: error: unknown type name 'FDCAN_FilterTypeDef'; did you mean 'FDCAN_GlobalTypeDef'?
+  100 |   FDCAN_FilterTypeDef sFilterConfig =
+      |   ^~~~~~~~~~~~~~~~~~~
+      |   FDCAN_GlobalTypeDef
+../Core/Src/main.c:102:3: error: field name not in record or union initializer
+  102 |   .FilterConfig = FDCAN_FILTER_TO_RXFIFO0,
+      |   ^
+../Core/Src/main.c:102:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:102:19: error: 'FDCAN_FILTER_TO_RXFIFO0' undeclared (first use in this function); did you mean 'FDCAN_ILS_RXFIFO0'?
+  102 |   .FilterConfig = FDCAN_FILTER_TO_RXFIFO0,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+      |                   FDCAN_ILS_RXFIFO0
+../Core/Src/main.c:102:19: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:103:3: error: field name not in record or union initializer
+  103 |   .FilterIndex = 0,
+      |   ^
+../Core/Src/main.c:103:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:103:18: warning: excess elements in scalar initializer
+  103 |   .FilterIndex = 0,
+      |                  ^
+../Core/Src/main.c:103:18: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:104:3: error: field name not in record or union initializer
+  104 |   .FilterID1 = 0x45,
+      |   ^
+../Core/Src/main.c:104:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:104:16: warning: excess elements in scalar initializer
+  104 |   .FilterID1 = 0x45,
+      |                ^~~~
+../Core/Src/main.c:104:16: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:105:3: error: field name not in record or union initializer
+  105 |   .FilterID2 = 0x45,
+      |   ^
+../Core/Src/main.c:105:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:105:16: warning: excess elements in scalar initializer
+  105 |   .FilterID2 = 0x45,
+      |                ^~~~
+../Core/Src/main.c:105:16: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:106:3: error: field name not in record or union initializer
+  106 |   .IdType = FDCAN_STANDARD_ID,
+      |   ^
+../Core/Src/main.c:106:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:106:13: error: 'FDCAN_STANDARD_ID' undeclared (first use in this function)
+  106 |   .IdType = FDCAN_STANDARD_ID,
+      |             ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:106:13: warning: excess elements in scalar initializer
+../Core/Src/main.c:106:13: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:107:3: error: field name not in record or union initializer
+  107 |   .FilterType = FDCAN_FILTER_RANGE
+      |   ^
+../Core/Src/main.c:107:3: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:107:17: error: 'FDCAN_FILTER_RANGE' undeclared (first use in this function)
+  107 |   .FilterType = FDCAN_FILTER_RANGE
+      |                 ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:107:17: warning: excess elements in scalar initializer
+../Core/Src/main.c:107:17: note: (near initialization for 'sFilterConfig')
+../Core/Src/main.c:109:3: warning: implicit declaration of function 'HAL_FDCAN_ConfigFilter' [-Wimplicit-function-declaration]
+  109 |   HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig);
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:109:27: error: 'hfdcan1' undeclared (first use in this function)
+  109 |   HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig);
+      |                           ^~~~~~~
+../Core/Src/main.c:110:3: warning: implicit declaration of function 'HAL_FDCAN_Start'; did you mean 'HAL_DMA_Start'? [-Wimplicit-function-declaration]
+  110 |   HAL_FDCAN_Start(&hfdcan1);
+      |   ^~~~~~~~~~~~~~~
+      |   HAL_DMA_Start
+../Core/Src/main.c:120:11: error: unknown type name 'FDCAN_TxHeaderTypeDef'; did you mean 'FDCAN_GlobalTypeDef'?
+  120 |           FDCAN_TxHeaderTypeDef pTxHeader = {
+      |           ^~~~~~~~~~~~~~~~~~~~~
+      |           FDCAN_GlobalTypeDef
+../Core/Src/main.c:121:11: error: field name not in record or union initializer
+  121 |           .BitRateSwitch = FDCAN_BRS_OFF,
+      |           ^
+../Core/Src/main.c:121:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:121:28: error: 'FDCAN_BRS_OFF' undeclared (first use in this function); did you mean 'FDCAN_IR_TCF'?
+  121 |           .BitRateSwitch = FDCAN_BRS_OFF,
+      |                            ^~~~~~~~~~~~~
+      |                            FDCAN_IR_TCF
+../Core/Src/main.c:122:11: error: field name not in record or union initializer
+  122 |           .DataLength = FDCAN_DLC_BYTES_8,
+      |           ^
+../Core/Src/main.c:122:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:122:25: error: 'FDCAN_DLC_BYTES_8' undeclared (first use in this function)
+  122 |           .DataLength = FDCAN_DLC_BYTES_8,
+      |                         ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:122:25: warning: excess elements in scalar initializer
+../Core/Src/main.c:122:25: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:123:11: error: field name not in record or union initializer
+  123 |           .ErrorStateIndicator = FDCAN_ESI_ACTIVE,
+      |           ^
+../Core/Src/main.c:123:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:123:34: error: 'FDCAN_ESI_ACTIVE' undeclared (first use in this function); did you mean 'FDCAN_PSR_ACT'?
+  123 |           .ErrorStateIndicator = FDCAN_ESI_ACTIVE,
+      |                                  ^~~~~~~~~~~~~~~~
+      |                                  FDCAN_PSR_ACT
+../Core/Src/main.c:123:34: warning: excess elements in scalar initializer
+../Core/Src/main.c:123:34: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:124:11: error: field name not in record or union initializer
+  124 |           .FDFormat = FDCAN_DATA_FRAME,
+      |           ^
+../Core/Src/main.c:124:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:124:23: error: 'FDCAN_DATA_FRAME' undeclared (first use in this function); did you mean 'FDCAN_IE_MRAFE'?
+  124 |           .FDFormat = FDCAN_DATA_FRAME,
+      |                       ^~~~~~~~~~~~~~~~
+      |                       FDCAN_IE_MRAFE
+../Core/Src/main.c:124:23: warning: excess elements in scalar initializer
+../Core/Src/main.c:124:23: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:125:11: error: field name not in record or union initializer
+  125 |           .IdType = FDCAN_STANDARD_ID,
+      |           ^
+../Core/Src/main.c:125:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:125:21: warning: excess elements in scalar initializer
+  125 |           .IdType = FDCAN_STANDARD_ID,
+      |                     ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:125:21: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:126:11: error: field name not in record or union initializer
+  126 |           .Identifier = 0x67,
+      |           ^
+../Core/Src/main.c:126:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:126:25: warning: excess elements in scalar initializer
+  126 |           .Identifier = 0x67,
+      |                         ^~~~
+../Core/Src/main.c:126:25: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:127:11: error: field name not in record or union initializer
+  127 |           .MessageMarker = 1,
+      |           ^
+../Core/Src/main.c:127:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:127:28: warning: excess elements in scalar initializer
+  127 |           .MessageMarker = 1,
+      |                            ^
+../Core/Src/main.c:127:28: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:128:11: error: field name not in record or union initializer
+  128 |           .TxEventFifoControl = FDCAN_TX_EVENT
+      |           ^
+../Core/Src/main.c:128:11: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:128:33: error: 'FDCAN_TX_EVENT' undeclared (first use in this function); did you mean 'FDCAN_IE_EPE'?
+  128 |           .TxEventFifoControl = FDCAN_TX_EVENT
+      |                                 ^~~~~~~~~~~~~~
+      |                                 FDCAN_IE_EPE
+../Core/Src/main.c:128:33: warning: excess elements in scalar initializer
+../Core/Src/main.c:128:33: note: (near initialization for 'pTxHeader')
+../Core/Src/main.c:131:11: error: expected ',' or ';' before 'HAL_FDCAN_AddMessageToTxFifoQ'
+  131 |           HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &pTxHeader, pTxData);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:133:11: warning: implicit declaration of function 'HAL_FDCAN_GetRxMessage' [-Wimplicit-function-declaration]
+  133 |           HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &pRxHeader, data);
+      |           ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:133:44: error: 'FDCAN_RX_FIFO0' undeclared (first use in this function); did you mean 'FDCAN_ILS_RXFIFO0'?
+  133 |           HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &pRxHeader, data);
+      |                                            ^~~~~~~~~~~~~~
+      |                                            FDCAN_ILS_RXFIFO0
+../Core/Src/main.c:120:33: warning: unused variable 'pTxHeader' [-Wunused-variable]
+  120 |           FDCAN_TxHeaderTypeDef pTxHeader = {
+      |                                 ^~~~~~~~~
+../Core/Src/main.c:187:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  187 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:234:13: error: invalid storage class for function 'MX_TIM3_Init'
+  234 | static void MX_TIM3_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:293:13: error: invalid storage class for function 'MX_GPIO_Init'
+  293 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:346:1: error: expected declaration or statement at end of input
+  346 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:56:13: warning: 'MX_GPIO_Init' used but never defined
+   56 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:57:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   57 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:58:13: warning: 'MX_TIM3_Init' used but never defined
+   58 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:337:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  337 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:293:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  293 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:234:13: warning: 'MX_TIM3_Init' defined but not used [-Wunused-function]
+  234 | static void MX_TIM3_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:187:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  187 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:140:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  140 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+09:26:27 Build Failed. 33 errors, 24 warnings. (took 1s.752ms)
+
