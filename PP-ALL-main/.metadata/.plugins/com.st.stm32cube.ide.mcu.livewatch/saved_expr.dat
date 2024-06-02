@@ -33,3 +33,11 @@ rnd
 rou
 temPick
 shelfPos[pick[5-0]-1]
+xx
+C
+Va
+QEIdata.QEIAngularVelocity
+QEIdata.Positions
+diffVelocity
+QEIdata.QEILinearAcc
+registerFrame[0x00].U16

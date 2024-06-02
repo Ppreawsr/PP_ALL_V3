@@ -266,9 +266,9 @@ int main(void)
   Modbus_init(&hmodbus, registerFrame);
   reed = 0;
 
-  shelfPos[0] = 0;
-  shelfPos[1] = 1200;
-  shelfPos[2] = 3200;
+  shelfPos[0] = 400;
+  shelfPos[1] = 2600;
+  shelfPos[2] = 3600;
   shelfPos[3] = 4800;
   shelfPos[4] = 5600;
 
@@ -673,7 +673,7 @@ static void MX_TIM1_Init(void)
   }
   sBreakInputConfig.Source = TIM_BREAKINPUTSOURCE_BKIN;
   sBreakInputConfig.Enable = TIM_BREAKINPUTSOURCE_ENABLE;
-  sBreakInputConfig.Polarity = TIM_BREAKINPUTSOURCE_POLARITY_LOW;
+  sBreakInputConfig.Polarity = TIM_BREAKINPUTSOURCE_POLARITY_HIGH;
   if (HAL_TIMEx_ConfigBreakInput(&htim1, TIM_BREAKINPUT_BRK, &sBreakInputConfig) != HAL_OK)
   {
     Error_Handler();
@@ -1314,7 +1314,14 @@ float PlantSimulation(float VIn) // run with fix frequency
 //{
 //return __HAL_TIM_GET_COUNTER(&htim2)+_micros;
 //}
+
+//
 void BaseAction(void){
+
+	static uint16_t timestamp1 = 0;
+	  static uint16_t timestamp2 = 0;
+	  static uint16_t timestamp3 = 0;
+	  static uint16_t timestamp4 = 0;
 
 	  position_goal = setPos/10.0;
 	  if (velocity < 0)
@@ -1329,58 +1336,25 @@ void BaseAction(void){
 
 	  if (QEIdata.QEILinearAcc < 0)
 	  	  {
-		  linear_accel = QEIdata.QEILinearAcc * -1;
+		  	  linear_accel = QEIdata.QEILinearAcc * -1;
 	  	  }
 
 	  	  else if (QEIdata.QEILinearAcc >= 0)
 	  	  {
-	  		linear_accel = QEIdata.QEILinearAcc;
+	  		  linear_accel = QEIdata.QEILinearAcc;
 	  	  }
 
 
 	  //linear_accel = accerelometer;
 	  linear_position = qeifloat-16.0 ;
 
-
-
 	  rState1=  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6);
 	  rState2=  HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
 
-	static uint16_t timestamp1 = 0;
-	static uint16_t timestamp2 = 0;
-	static uint16_t timestamp3 = 0;
-	static uint16_t timestamp4 = 0;
+
 	// Vacuum & Gripper
 	  vacuum = registerFrame[0x02].U16;
-
-	  if (vacuum == 1)
-	  {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 0);
-	  }
-	  else
-	  {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
-	  }
 	  gripper = registerFrame[0x03].U16;	  //1 forward 0 backward
-	  if (gripper ==1){
-	  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 0);
-	  		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
-	  		  if ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET )
-	  		  {
-	  			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
-	  			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
-	  		  }
-	  	  }
-	  	  else if (gripper == 0){
-	  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
-	  		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 0 );
-	  		if ( HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET )
-	  			  		  {
-	  			  			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
-	  			  			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
-	  			  		  }
-	  	  }
-
 	  reed = rState1 + (2 * rState2); //for 2 back 1
 	  registerFrame[0x04].U16 = (reed*2%3);
 
@@ -1390,6 +1364,38 @@ void BaseAction(void){
 	  registerFrame[0x13].U16 = (float)(linear_accel * 10)	; //Acceleration
 	  registerFrame[0x40].U16 = x_pos; // X-axis Position
 
+	  if (vacuum == 1)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 0);
+	  }
+	  else
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
+	  }
+
+	  if (gripper ==1)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 0);
+		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  if ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET )
+		  {
+			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+			  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  }
+	  }
+	  else if (gripper == 0)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 0 );
+		  if ( HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET )
+		  {
+	  		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  }
+	  }
+
+
+
 	  //heartbeat protocal & debug
 	  //registerFrame[0x00].U16 = 22881;
 	  if(registerFrame[0x00].U16 != 22881){
@@ -1397,181 +1403,434 @@ void BaseAction(void){
 		  //deb++;
 	  }
 
-	  static uint16_t timestamp = 0;
-
-		/////Set shelves
-		  if(registerFrame[0x01].U16 == 1) // order mode 1 -> open setshelf
-		  {
-			  registerFrame[0x01].U16 = 0; //change to idle mode
-			  registerFrame[0x10].U16 = 1; //current state set shelf mode
-
-//			  set_position_box();
-
-			  //delay 2000ms
-			 timestamp = HAL_GetTick()+2000;
-		  }
-		  if(registerFrame[0x10].U16 == 1 && flagShelf == 1)
-		  {
-			  registerFrame[0x23].U16 = shelfPos[0];
-			  registerFrame[0x24].U16 = shelfPos[1];
-			  registerFrame[0x25].U16 = shelfPos[2];
-			  registerFrame[0x26].U16 = shelfPos[3];
-			  registerFrame[0x27].U16 = shelfPos[4];
-			  registerFrame[0x10].U16 = 0; //
-			  flagShelf = 0;
-		  }
+	  /////Set shelves
+	  if(registerFrame[0x01].U16 == 1) // order mode 1 -> open setshelf
+	  {
+		  registerFrame[0x01].U16 = 0; //change to idle mode
+		  registerFrame[0x10].U16 = 1; //current state set shelf mode
+//		  set_position_box();
+	  }
+	  if(registerFrame[0x10].U16 == 1 && flagShelf == 1)
+	  {
+		  registerFrame[0x23].U16 = shelfPos[0];
+		  registerFrame[0x24].U16 = shelfPos[1];
+		  registerFrame[0x25].U16 = shelfPos[2];
+		  registerFrame[0x26].U16 = shelfPos[3];
+		  registerFrame[0x27].U16 = shelfPos[4];
+		  registerFrame[0x10].U16 = 0; //
+		  flagShelf = 0;
+	  }
 
 		///////1
-		  else if((registerFrame[0x01].U16 == 2)) //go to mode 2: Home
-		  	{
-		  		(registerFrame[0x01].U16) = 0; //reset status
-		  		(registerFrame[0x10].U16) = 2; //Z-home
-
+	  else if((registerFrame[0x01].U16 == 2)) //go to mode 2: Home
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
+		  (registerFrame[0x10].U16) = 2; //Z-home
 		  		//setPos = shelfPos[0]; // set goal to home
-		  		setPos = 0;
+		  setPos = 0;
 //		  		  uint8_t result = HomeZ();
 //		  		  HAL_Delay(2000);
 //		  		  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
-		  		  Home = 0;
-		  		  rou = 0;
-		  	}
-		/////point mode
-			else if((registerFrame[0x01].U16) == 8)
-			{
-				(registerFrame[0x01].U16) = 0; //reset status
-				(registerFrame[0x10].U16) = 16; // Z-go point
+		  Home = 0;
+		  rou = 0;
+	  }
+	/////point mode
+	  else if((registerFrame[0x01].U16) == 8)
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
+		  (registerFrame[0x10].U16) = 16; // Z-go point
 
-				setPos = ((registerFrame[0x30].U16)); // goal = point 30->base system 4 point mode
+		  setPos = ((registerFrame[0x30].U16)); // goal = point 30->base system 4 point mode
 				//generate_trapezoidal_velocity_profile(time_op,setPos);
-			}
-		/////jog mode
-		  //read (convert to array)
-			else if((registerFrame[0x01].U16 ==4)){
-				(registerFrame[0x01].U16) = 0; //reset status
+	  }
+	/////jog mode
+	  //read (convert to array)
+	  else if((registerFrame[0x01].U16 ==4))
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
 
-				temPick = (registerFrame[0x21].U16);
-				temPlace = (registerFrame[0x22].U16);
+		  temPick = (registerFrame[0x21].U16);
+		  temPlace = (registerFrame[0x22].U16);
 
-				OrderSeparate();
-
-
-			}
+		  OrderSeparate();
+	  }
 			//run
-			else if(rnd > 0)
-			{
+	  else if(rnd > 0)
+	  {
 				//first round
-			if(registerFrame[0x10].U16 == 0 && rnd== 5 && gripper == 0 && reed == 1 && vacuum == 0) // first rev
-				{
-				mode = 9; // for debug - pick
-				(registerFrame[0x10].U16) = 4; // Z-go pick
-				setPos = shelfPos[pick[5-rnd]-1];
-				}
-			if((piingpong && registerFrame[0x10].U16 == 8)) // prev mode: pick, do place
-				{
+		  if(registerFrame[0x10].U16 == 0 && rnd== 5 && gripper == 0 && reed == 1 && vacuum == 0) // first rev
+		  {
+			  mode = 9; // for debug - pick
+			  (registerFrame[0x10].U16) = 4; // Z-go pick
+			  setPos = shelfPos[pick[5-rnd]-1];
+		  }
+		  if((piingpong && registerFrame[0x10].U16 == 8)) // prev mode: pick, do place
+		  {
 				///////place down
-				if(mode == 6){
-					timestamp1 = HAL_GetTick() + 300; // delay before gripper move
-					// f
-					mode = 60;
-					}
-				if(reed != 2 && rnd> 0 && vacuum == 1 && gripper == 0 && HAL_GetTick() >= timestamp1){
-					registerFrame[0x03].U16 = 1; // gripper forward
-					timestamp2 = HAL_GetTick() + 300; //delay before release box
-					mode = 61;
-					}
-				else if(reed == 2 && vacuum == 1 && HAL_GetTick() >= timestamp2)//reached reed vacuum not off
-					{
-					registerFrame[0x02].U16 = 0; //vacuum off
-					timestamp3 = HAL_GetTick() + 100; // delay before retract gripper
-					mode = 62;
-					}
-				else if(vacuum == 0 && gripper == 1 && HAL_GetTick() >= timestamp3)
-					{
-					registerFrame[0x03].U16 = 0; //gripper backward
-					load = 0;
-					timestamp4 = HAL_GetTick() + 100; // delay before moving to pick
-					mode = 63;
-					}
+			  if(mode == 6){
+				  timestamp1 = HAL_GetTick() + 100; // delay before gripper move
+				  mode = 60;
+			  }
+			  if(reed != 2 && rnd> 0 && vacuum == 1 && gripper == 0 && HAL_GetTick() >= timestamp1){
+				  registerFrame[0x03].U16 = 1; // gripper forward
+				  timestamp2 = HAL_GetTick() + 100; //delay before release box
+				  mode = 61;
+			  }
+			  else if(reed == 2 && vacuum == 1 && HAL_GetTick() >= timestamp2)//reached reed vacuum not off
+			  {
+				  registerFrame[0x02].U16 = 0; //vacuum off
+				  timestamp3 = HAL_GetTick() + 100; // delay before retract gripper
+				  mode = 62;
+			  }
+			  else if(vacuum == 0 && gripper == 1 && HAL_GetTick() >= timestamp3)
+			  {
+				  registerFrame[0x03].U16 = 0; //gripper backward
+				  load = 0;
+				  timestamp4 = HAL_GetTick() + 100; // delay before moving to pick
+				  mode = 63;
+			  }
 				///////finish place -> move on
-				if(gripper == 0 && reed == 1 && vacuum == 0 && HAL_GetTick() >= timestamp4)
-					{
-					rnd--;
-					if(rnd>0)
-						{
-						(registerFrame[0x10].U16) = 4; // Z-go pick
-						setPos = shelfPos[pick[5-rnd]-1];
-						mode = 9;
-						}
-					}
-				}
-			else if(piingpong && registerFrame[0x10].U16 == 4)// prev mode: place, do pick
-				{
+			  if(gripper == 0 && reed == 1 && vacuum == 0 && HAL_GetTick() >= timestamp4)
+			  {
+				  rnd--;
+				  if(rnd>0)
+				  {
+					  (registerFrame[0x10].U16) = 4; // Z-go pick
+					  setPos = shelfPos[pick[5-rnd]-1];
+					  mode = 9;
+				  }
+			  }
+		  }
+		  else if(piingpong && registerFrame[0x10].U16 == 4)// prev mode: place, do pick
+		  {
 				//////pick up
-				if(mode == 9){
-					timestamp1 = HAL_GetTick() + 50; // delay before gripper go pick
+			  if(mode == 9){
+				  timestamp1 = HAL_GetTick() + 50; // delay before gripper go pick
 					//mode = 90;
-					}
-				if(reed == 1 && gripper == 0 && vacuum == 0 && HAL_GetTick() >= timestamp1)
-					{
-					timestamp2 = HAL_GetTick() + 100; // delay before picking box
-					registerFrame[0x03].U16 = 1; //gripper forward
+			  }
+			  if(reed == 1 && gripper == 0 && vacuum == 0 && HAL_GetTick() >= timestamp1)
+			  {
+				  timestamp2 = HAL_GetTick() + 100; // delay before picking box
+				  registerFrame[0x03].U16 = 1; //gripper forward
 					//mode = 91;
-					}
-				else if(gripper == 1 && vacuum == 0 && HAL_GetTick() >= timestamp2) //if vacuum off
-					{
-					registerFrame[0x02].U16 = 1; //vacuum on
-					timestamp3 = HAL_GetTick() + 400; // delay before pulling box back
+			  }
+			  else if(gripper == 1 && vacuum == 0 && HAL_GetTick() >= timestamp2) //if vacuum off
+			  {
+				  registerFrame[0x02].U16 = 1; //vacuum on
+				  timestamp3 = HAL_GetTick() + 400; // delay before pulling box back
 					//mode = 92;
 
-					}
-				else if(reed == 2 && gripper == 1 && vacuum == 1 && HAL_GetTick() >= timestamp3)
-					{
-					registerFrame[0x03].U16 = 0; //gripper backward
-					load = 1;
-					timestamp4 = HAL_GetTick() + 200; // delay before moving again
+			  }
+			  else if(reed == 2 && gripper == 1 && vacuum == 1 && HAL_GetTick() >= timestamp3)
+			  {
+				  registerFrame[0x03].U16 = 0; //gripper backward
+				  load = 1;
+				  timestamp4 = HAL_GetTick() + 200; // delay before moving again
 					//mode = 93;
-					}
+			  }
 				///////finish pick -> move on
-				if(gripper == 0 && reed == 1 && vacuum == 1 && HAL_GetTick() >= timestamp4)
-					{
-					(registerFrame[0x10].U16) = 8; // Z-go place
-					if(place[5-rnd] == 5){
-						setPos = shelfPos[place[5-rnd]-1] + 100; // goal + 5mm
-					}
-					else{
-						setPos = shelfPos[place[5-rnd]-1] + 50; // goal + 5mm
-					}
+			  if(gripper == 0 && reed == 1 && vacuum == 1 && HAL_GetTick() >= timestamp4)
+			  {
+				  (registerFrame[0x10].U16) = 8; // Z-go place
+				  if(place[5-rnd] == 5)
+				  {
+					  setPos = shelfPos[place[5-rnd]-1] + 150; // goal + 5mm
+				  }
+				  else
+				  {
+					  setPos = shelfPos[place[5-rnd]-1] + 150; // goal + 5mm
+				  }
 					//mode = 6;
-					}
-				}
-			}
-
-		//end jog
-			else if(registerFrame[0x10].U16 == 8 && rnd== 0)
-			{
-				(registerFrame[0x10].U16 = 0); // End Jogs
-				mode = 255;
-			}
-		/////End point & Home
-			else if(piingpong && (registerFrame[0x10].U16 == 2 || registerFrame[0x10].U16 == 16))
-			{
-				//finish point & home mode
-				static uint64_t Timestamp = 0;
-				if(rnd2 == 0){
-					Timestamp = HAL_GetTick() + 1000; //delay
-					rnd2 = 1;
-				}
-				else if(HAL_GetTick() >= Timestamp)
-				{
-					registerFrame[0x10].U16 = 0; // finish point & home mode
-					rnd2 = 0;
-				}
-			}
-		  if(registerFrame[0x10].U16 == 0){
-			  piingpong = 0;
+			  }
 		  }
-	}
+	  }
 
+	  //end jog
+	  else if(registerFrame[0x10].U16 == 8 && rnd== 0)
+	  {
+		  (registerFrame[0x10].U16 = 0); // End Jogs
+		  mode = 255;
+	  }
+		/////End point & Home
+	  else if(piingpong && (registerFrame[0x10].U16 == 2 || registerFrame[0x10].U16 == 16))
+	  {
+		  //finish point & home mode
+		  static uint64_t Timestamp = 0;
+		  if(rnd2 == 0){
+			  Timestamp = HAL_GetTick() + 1000; //delay
+			  rnd2 = 1;
+		  }
+		  else if(HAL_GetTick() >= Timestamp)
+		  {
+			  registerFrame[0x10].U16 = 0; // finish point & home mode
+			  rnd2 = 0;
+		  }
+	  }
+	  if(registerFrame[0x10].U16 == 0){
+		  piingpong = 0;
+	  }
+}
+
+//
+//
+void BaseActionV2(void){
+
+	static uint16_t timestamp1 = 0;
+	  static uint16_t timestamp2 = 0;
+	  static uint16_t timestamp3 = 0;
+	  static uint16_t timestamp4 = 0;
+
+	  position_goal = setPos/10.0;
+	  if (velocity < 0)
+	  {
+		  linear_velocity = QEIdata.QEIAngularVelocity[NEW] * -1;
+	  }
+
+	  else if (velocity >= 0)
+	  {
+		  linear_velocity = QEIdata.QEIAngularVelocity[NEW];
+	  }
+
+	  if (QEIdata.QEILinearAcc < 0)
+	  	  {
+		  	  linear_accel = QEIdata.QEILinearAcc * -1;
+	  	  }
+
+	  	  else if (QEIdata.QEILinearAcc >= 0)
+	  	  {
+	  		  linear_accel = QEIdata.QEILinearAcc;
+	  	  }
+
+
+	  //linear_accel = accerelometer;
+	  linear_position = qeifloat-16.0 ;
+
+	  rState1=  HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6);
+	  rState2=  HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
+
+
+	// Vacuum & Gripper
+	  vacuum = registerFrame[0x02].U16;
+	  gripper = registerFrame[0x03].U16;	  //1 forward 0 backward
+	  reed = rState1 + (2 * rState2); //for 2 back 1
+	  registerFrame[0x04].U16 = (reed*2%3);
+
+
+	  registerFrame[0x11].U16 = (float)(linear_position * 10); //Position
+	  registerFrame[0x12].U16 = (float)(linear_velocity * 10); //Velocity
+	  registerFrame[0x13].U16 = (float)(linear_accel * 10)	; //Acceleration
+	  registerFrame[0x40].U16 = x_pos; // X-axis Position
+
+	  if (vacuum == 1)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 0);
+	  }
+	  else
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, 1);
+	  }
+
+	  if (gripper ==1)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 0);
+		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  if ( HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET )
+		  {
+			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+			  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  }
+	  }
+	  else if (gripper == 0)
+	  {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+		  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 0 );
+		  if ( HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) == GPIO_PIN_RESET )
+		  {
+	  		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, 1);
+	  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, 1 );
+		  }
+	  }
+
+
+
+	  //heartbeat protocal & debug
+	  //registerFrame[0x00].U16 = 22881;
+	  if(registerFrame[0x00].U16 != 22881){
+		  registerFrame[0x00].U16 = 22881;
+		  //deb++;
+	  }
+
+	  /////Set shelves
+	  if(registerFrame[0x01].U16 == 1) // order mode 1 -> open setshelf
+	  {
+		  registerFrame[0x01].U16 = 0; //change to idle mode
+		  registerFrame[0x10].U16 = 1; //current state set shelf mode
+//		  set_position_box();
+	  }
+	  if(registerFrame[0x10].U16 == 1 && flagShelf == 1)
+	  {
+		  registerFrame[0x23].U16 = shelfPos[0];
+		  registerFrame[0x24].U16 = shelfPos[1];
+		  registerFrame[0x25].U16 = shelfPos[2];
+		  registerFrame[0x26].U16 = shelfPos[3];
+		  registerFrame[0x27].U16 = shelfPos[4];
+		  registerFrame[0x10].U16 = 0; //
+		  flagShelf = 0;
+	  }
+
+		///////1
+	  else if((registerFrame[0x01].U16 == 2)) //go to mode 2: Home
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
+		  (registerFrame[0x10].U16) = 2; //Z-home
+		  		//setPos = shelfPos[0]; // set goal to home
+		  setPos = 0;
+//		  		  uint8_t result = HomeZ();
+//		  		  HAL_Delay(2000);
+//		  		  generate_trapezoidal_velocity_profile(time_op,setPos/10.0);
+		  Home = 0;
+		  rou = 0;
+	  }
+	/////point mode
+	  else if((registerFrame[0x01].U16) == 8)
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
+		  (registerFrame[0x10].U16) = 16; // Z-go point
+
+		  setPos = ((registerFrame[0x30].U16)); // goal = point 30->base system 4 point mode
+				//generate_trapezoidal_velocity_profile(time_op,setPos);
+	  }
+	/////jog mode
+	  //read (convert to array)
+	  else if((registerFrame[0x01].U16 ==4))
+	  {
+		  (registerFrame[0x01].U16) = 0; //reset status
+
+		  temPick = (registerFrame[0x21].U16);
+		  temPlace = (registerFrame[0x22].U16);
+
+		  OrderSeparate();
+	  }
+			//run
+	  else if(rnd > 0)
+	  {
+				//first round
+		  if(registerFrame[0x10].U16 == 0 && rnd== 5 && gripper == 0 && reed == 1 && vacuum == 0) // first rev
+		  {
+			  mode = 9; // for debug - pick
+			  (registerFrame[0x10].U16) = 4; // Z-go pick
+			  setPos = shelfPos[pick[5-rnd]-1];
+		  }
+		  if((piingpong && registerFrame[0x10].U16 == 8)) // prev mode: pick, do place
+		  {
+				///////place down
+			  if(mode == 6){
+				  timestamp1 = HAL_GetTick() + 100; // delay before gripper move
+				  registerFrame[0x03].U16 = 1; // gripper
+				  registerFrame[0x02].U16 = 2; // vacuum
+				  mode = 60;
+			  }
+			  if(reed != 2 && rnd> 0 && vacuum == 1 && gripper == 0 && HAL_GetTick() >= timestamp1){
+				  registerFrame[0x03].U16 = 1; // gripper forward
+				  timestamp2 = HAL_GetTick() + 100; //delay before release box
+				  mode = 61;
+			  }
+			  else if(reed == 2 && vacuum == 1 && HAL_GetTick() >= timestamp2)//reached reed vacuum not off
+			  {
+				  registerFrame[0x02].U16 = 0; //vacuum off
+				  timestamp3 = HAL_GetTick() + 100; // delay before retract gripper
+				  mode = 62;
+			  }
+			  else if(vacuum == 0 && gripper == 1 && HAL_GetTick() >= timestamp3)
+			  {
+				  registerFrame[0x03].U16 = 0; //gripper backward
+				  load = 0;
+				  timestamp4 = HAL_GetTick() + 100; // delay before moving to pick
+				  mode = 63;
+			  }
+				///////finish place -> move on
+			  if(gripper == 0 && reed == 1 && vacuum == 0 && HAL_GetTick() >= timestamp4)
+			  {
+				  rnd--;
+				  if(rnd>0)
+				  {
+					  (registerFrame[0x10].U16) = 4; // Z-go pick
+					  setPos = shelfPos[pick[5-rnd]-1];
+					  mode = 9;
+				  }
+			  }
+		  }
+		  else if(piingpong && registerFrame[0x10].U16 == 4)// prev mode: place, do pick
+		  {
+				//////pick up
+			  if(mode == 9){
+				  timestamp1 = HAL_GetTick() + 50; // delay before gripper go pick
+					//mode = 90;
+			  }
+			  if(reed == 1 && gripper == 0 && vacuum == 0 && HAL_GetTick() >= timestamp1)
+			  {
+				  timestamp2 = HAL_GetTick() + 100; // delay before picking box
+				  registerFrame[0x03].U16 = 1; //gripper forward
+					//mode = 91;
+			  }
+			  else if(gripper == 1 && vacuum == 0 && HAL_GetTick() >= timestamp2) //if vacuum off
+			  {
+				  registerFrame[0x02].U16 = 1; //vacuum on
+				  timestamp3 = HAL_GetTick() + 400; // delay before pulling box back
+					//mode = 92;
+
+			  }
+			  else if(reed == 2 && gripper == 1 && vacuum == 1 && HAL_GetTick() >= timestamp3)
+			  {
+				  registerFrame[0x03].U16 = 0; //gripper backward
+				  load = 1;
+				  timestamp4 = HAL_GetTick() + 200; // delay before moving again
+					//mode = 93;
+			  }
+				///////finish pick -> move on
+			  if(gripper == 0 && reed == 1 && vacuum == 1 && HAL_GetTick() >= timestamp4)
+			  {
+				  (registerFrame[0x10].U16) = 8; // Z-go place
+				  if(place[5-rnd] == 5)
+				  {
+					  setPos = shelfPos[place[5-rnd]-1] + 150; // goal + 5mm
+				  }
+				  else
+				  {
+					  setPos = shelfPos[place[5-rnd]-1] + 150; // goal + 5mm
+				  }
+					//mode = 6;
+			  }
+		  }
+	  }
+
+	  //end jog
+	  else if(registerFrame[0x10].U16 == 8 && rnd== 0)
+	  {
+		  (registerFrame[0x10].U16 = 0); // End Jogs
+		  mode = 255;
+	  }
+		/////End point & Home
+	  else if(piingpong && (registerFrame[0x10].U16 == 2 || registerFrame[0x10].U16 == 16))
+	  {
+		  //finish point & home mode
+		  static uint64_t Timestamp = 0;
+		  if(rnd2 == 0){
+			  Timestamp = HAL_GetTick() + 1000; //delay
+			  rnd2 = 1;
+		  }
+		  else if(HAL_GetTick() >= Timestamp)
+		  {
+			  registerFrame[0x10].U16 = 0; // finish point & home mode
+			  rnd2 = 0;
+		  }
+	  }
+	  if(registerFrame[0x10].U16 == 0){
+		  piingpong = 0;
+	  }
+}
+
+//
 
 void OrderSeparate(void)
 {
@@ -1671,13 +1930,19 @@ uint8_t getZStop(){
 
 // @User : Stop motor when hit the end stop
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-	if((GPIO_Pin == GPIO_PIN_5 || GPIO_Pin == GPIO_PIN_10 ) && zStop== 0){
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-		zStop = 1;
-		__HAL_TIM_SET_COUNTER(&htim2, 0);
-		qeifloat = 0;
-	}
+    if((GPIO_Pin == GPIO_PIN_10 ) && zStop== 0){
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+        zStop = 1;
+        __HAL_TIM_SET_COUNTER(&htim2, 0);
+        qeifloat = 0;
+    }
+    if ((GPIO_Pin == GPIO_PIN_5))
+    {
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+    }
 
 }
 
@@ -1830,189 +2095,6 @@ void Error_Handler(void)
   {
   }
   /* USER CODE END Error_Handler_Debug */
-}
-void Error_Gain(void){
-	if(setPos == 100){
-		setPos = 100 - x;
-	}
-	else if(setPos == 200){
-		setPos = 200 - x;
-	}
-	else if(setPos == 300){
-		setPos = 300 - x;
-	}
-	else if(setPos == 400){
-		setPos = 400 - x;
-	}
-	else if(setPos == 500){
-		setPos = 500 - x;
-	}
-	else if(setPos == 600){
-		setPos = 600 - x;
-	}
-	else if(setPos == 700){
-		setPos = 700 - x;
-	}
-	else if(setPos == 800){
-		setPos = 800 - x;
-	}
-	else if(setPos == 900){
-		setPos = 900 - x;
-	}
-	else if(setPos == 1000){
-		setPos = 1000 - x;
-	}
-	else if(setPos == 1100){
-		setPos = 1100 - x;
-	}
-	else if(setPos == 1200){
-		setPos = 1200 - x;
-	}
-	else if(setPos == 1300){
-		setPos = 1300 - x;
-	}
-	else if(setPos == 1400){
-		setPos = 1400 - x;
-	}
-	else if(setPos == 1500){
-		setPos = 1500 - x;
-	}
-	else if(setPos == 1600){
-		setPos = 1600 - x;
-	}
-	else if(setPos == 1700){
-		setPos = 1700 - x;
-	}
-	else if(setPos == 1800){
-		setPos = 1800 - x;
-	}
-	else if(setPos == 1900){
-		setPos = 1900 - x;
-	}
-	else if(setPos == 2000){
-		setPos = 2000 - x;
-	}
-	else if(setPos == 2100){
-		setPos = 2100 - x;
-	}
-	else if(setPos == 2200){
-		setPos = 2200 - x;
-	}
-	else if(setPos == 2300){
-		setPos = 2300 - x;
-	}
-	else if(setPos == 2400){
-		setPos = 2400 - x;
-	}
-	else if(setPos == 2500){
-		setPos = 2500 - x;
-	}
-	else if(setPos == 2600){
-		setPos = 2600 - x;
-	}
-	else if(setPos == 2700){
-		setPos = 2700 - x;
-	}
-	else if(setPos == 2800){
-		setPos = 2800 - x;
-	}
-	else if(setPos == 2900){
-		setPos = 2900 - x;
-	}
-	else if(setPos == 3000){
-		setPos = 3000 - x;
-	}
-	else if(setPos == 3100){
-		setPos = 3100 - x;
-	}
-	else if(setPos == 3200){
-		setPos = 3200 - x;
-	}
-	else if(setPos == 3300){
-		setPos = 3300 - x;
-	}
-	else if(setPos == 3400){
-		setPos = 3400 - x;
-	}
-	else if(setPos == 3500){
-		setPos = 3500 - x;
-	}
-	else if(setPos == 3600){
-		setPos = 3600 - x;
-	}
-	else if(setPos == 3700){
-		setPos = 3700 - x;
-	}
-	else if(setPos == 3800){
-		setPos = 3800 - x;
-	}
-	else if(setPos == 3900){
-		setPos = 3900 - x;
-	}
-	else if(setPos == 4000){
-		setPos = 4000 - x;
-	}
-	else if(setPos == 4100){
-		setPos = 4100 - x;
-	}
-	else if(setPos == 4200){
-		setPos = 4200 - x;
-	}
-	else if(setPos == 4300){
-		setPos = 4300 - x;
-	}
-	else if(setPos == 4400){
-		setPos = 4400 - x;
-	}
-	else if(setPos == 4500){
-		setPos = 4500;
-	}
-	else if(setPos == 4600){
-		setPos = 4600 - x;
-	}
-	else if(setPos == 4700){
-		setPos = 4700 - x;
-	}
-	else if(setPos == 4800){
-		setPos = 4800 - x;
-	}
-	else if(setPos == 4900){
-		setPos = 4900 - x;
-	}
-	else if(setPos == 5000){
-		setPos = 5000 - x;
-	}
-	else if(setPos == 5100){
-		setPos = 5100 - x;
-	}
-	else if(setPos == 5200){
-		setPos = 5200 - x;
-	}
-	else if(setPos == 5300){
-		setPos = 5300 - x;
-	}
-	else if(setPos == 5400){
-		setPos = 5400 - x;
-	}
-	else if(setPos == 5500){
-		setPos = 5500 - x;
-	}
-	else if(setPos == 5600){
-		setPos = 5600 - x;
-	}
-	else if(setPos == 5700){
-		setPos = 5700 - x;
-	}
-	else if(setPos == 5800){
-		setPos = 5800 - x;
-	}
-	else if(setPos == 5900){
-		setPos = 5900 - x;
-	}
-	else if(setPos == 6000){
-		setPos = 6000 - x;
-	}
-
 }
 
 #ifdef  USE_FULL_ASSERT
