@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;CANtest&apos;" deleteContents="false" description="Delete resource &apos;CANtest&apos;" element1="/CANtest" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1717124858034"/>&#x0A;<refactoring comment="Delete resource &apos;OCTest&apos;" deleteContents="false" description="Delete resource &apos;OCTest&apos;" element1="/OCTest" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1717124863902"/>
-</session>
