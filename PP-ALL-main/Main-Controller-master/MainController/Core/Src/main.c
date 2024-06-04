@@ -270,11 +270,11 @@ int main(void)
   gripper = 0;
   vacuum = 0;
 
-  shelfPos[0] = 400;
-  shelfPos[1] = 1641;
-  shelfPos[2] = 3236;
-  shelfPos[3] = 4442;
-  shelfPos[4] = 5850;
+  shelfPos[0] = 452;
+  shelfPos[1] = 1640;
+  shelfPos[2] = 2838;
+  shelfPos[3] = 4219;
+  shelfPos[4] = 5844;
 
   // @User: Setup Timer 1 for Motor drive
   HAL_TIM_Base_Start(&htim1);

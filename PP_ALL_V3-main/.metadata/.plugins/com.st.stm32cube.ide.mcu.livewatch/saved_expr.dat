@@ -1,0 +1,17 @@
+registerFrame[0x02].U16
+vacuum
+registerFrame[0x03].U16
+gripper
+setPos
+reed
+piingpong
+mode
+Peak
+fin
+((setPos+160)/10.0) - qeifloat))
+qeifloat
+pwmM
+registerFrame[0x10].U16
+deb
+setShelf
+shelfPos
