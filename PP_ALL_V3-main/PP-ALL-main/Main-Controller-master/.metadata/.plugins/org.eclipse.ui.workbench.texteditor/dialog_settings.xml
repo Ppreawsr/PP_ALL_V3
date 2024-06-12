@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="zStop"/>
+		<item key="selection" value="heartbeat"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="heartbeat"/>
+			<item value="้ำฟพะิำฟะ"/>
+			<item value="qeifloat"/>
 			<item value="zStop"/>
 			<item value="begin 3"/>
 			<item value="feedback"/>
-			<item value="qeifloat"/>
 			<item value="__HAL_TIM_GET_COUNTER"/>
 			<item value="qei"/>
 			<item value="QEI"/>
@@ -21,8 +23,6 @@
 			<item value="home"/>
 			<item value="baseaction"/>
 			<item value="control"/>
-			<item value="joy"/>
-			<item value="homez"/>
 		</list>
 		<list key="replacehistory">
 		</list>

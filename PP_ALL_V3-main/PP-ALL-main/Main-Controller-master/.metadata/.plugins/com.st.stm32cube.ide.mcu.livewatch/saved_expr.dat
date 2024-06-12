@@ -9,3 +9,4 @@ piingpong
 rState1
 rState2
 Vfeedback
+registerFrame[0x00].U16
